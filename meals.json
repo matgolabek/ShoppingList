@@ -1,0 +1,36 @@
+const mealsData = {
+  "meals": [
+    {
+      "name": "English Breakfast",
+      "type": "Breakfast",
+      "products": [
+        {
+          "name": "Eggs",
+          "unit": "pcs",
+          "quantity": 6
+        },
+        {
+          "name": "Bacon",
+          "unit": "grams",
+          "quantity": 200
+        }
+      ]
+    },
+    {
+      "name": "Chicken with Rice",
+      "type": "Lunch",
+      "products": [
+        {
+          "name": "Chicken Breast",
+          "unit": "grams",
+          "quantity": 300
+        },
+        {
+          "name": "Rice",
+          "unit": "grams",
+          "quantity": 150
+        }
+      ]
+    }
+  ]
+};
