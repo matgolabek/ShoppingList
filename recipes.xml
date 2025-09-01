@@ -1,0 +1,75 @@
+<?ml version="1.0" encoding="UTF-8"?>
+<recipes>
+    <recipe>
+        <name>Spaghetti</name>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Pasta</name>
+                <name lang="pl">Makaron</name>
+                <quantity>400 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Onion</name>
+                <name lang="pl">Cebula</name>
+                <quantity lang="en">2 pcs</quantity>
+                <quantity lang="pl">2 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Champignons</name>
+                <name lang="pl">Pieczarki</name>
+                <quantity lang="en">5 big pcs</quantity>
+                <quantity lang="pl">5 dużych szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Minced pork</name>
+                <name lang="pl">Mięso mielone wprz</name>
+                <quantity lang="en">400 g</quantity>
+                <quantity lang="pl">400 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Red pepper</name>
+                <name lang="pl">Papryka</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Passata</name>
+                <name lang="pl">Passata</name>
+                <quantity>700 ml</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en"> Not implemented yet
+        </instructions>
+        <instructions lang="pl"> Doda się później
+        </instructions>  
+    </recipe>
+    <recipe>
+        <name>Pesto</name>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Pasta</name>
+                <name lang="pl">Makaron</name>
+                <quantity>400 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name>Pesto</name>
+                <quantity>400 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Grated mozarella</name>
+                <name lang="pl">Tarta mozarella</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en"> Not implemented yet
+        </instructions>
+        <instructions lang="pl"> Doda się później
+        </instructions>  
+    </recipe>
+</recipes>

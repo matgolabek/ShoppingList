@@ -1,11 +1,10 @@
 class Product:
     """
-    Represents a product of the meal in the shopping list.
+    Represents a product of the recipe in the shopping list.
     """
-    def __init__(self, name, unit, quantity):
+    def __init__(self, name: str, quantity: str):
         self.name = name
-        self.unit = unit
         self.quantity = quantity
 
     def __repr__(self) -> str:
-        return f"Product(name={self.name}, unit={self.unit}, quantity={self.quantity})"
+        return f"Product({self.name} {self.quantity})"

@@ -1,0 +1,17 @@
+<?ml version="1.0" encoding="UTF-8"?>
+<languagepack>
+    <language name="en">
+        <string id="proceed">Continue</string>
+        <string id="settings">Settings</string>
+        <string id="en">english</string>
+        <string id="pl">polski</string>
+        <string id="free_view">Free View</string>
+    </language>
+    <language name="pl">
+        <string id="proceed">Kontynuuj</string>
+        <string id="settings">Ustawienia</string>
+        <string id="en">english</string>
+        <string id="pl">polski</string>
+        <string id="free_view">Widok Swobodny</string>
+    </language>
+</languagepack>
