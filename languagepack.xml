@@ -6,6 +6,16 @@
         <string id="en">english</string>
         <string id="pl">polski</string>
         <string id="free_view">Free View</string>
+        <string id="language">Language</string>
+        <string id="email">Email Address</string>
+        <string id="close">Close</string>
+        <string id="add_to_list">Add to Cart</string>
+        <string id="remove_from_list">Remove from Cart</string>
+        <string id="no_instructions">No Instructions Available</string>
+        <string id="duration">Duration</string>
+        <string id="portions">Portions</string>
+        <string id="ingredients">Ingredients</string>
+        <string id="instructions">Instructions</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -13,5 +23,15 @@
         <string id="en">english</string>
         <string id="pl">polski</string>
         <string id="free_view">Widok Swobodny</string>
+        <string id="language">Język</string>
+        <string id="email">Adres e-mail</string>
+        <string id="close">Zamknij</string>
+        <string id="add_to_list">Do Koszyka</string>
+        <string id="remove_from_list">Usuń z Koszyka</string>
+        <string id="no_instructions">Brak instrukcji</string>
+        <string id="duration">Przygotowanie</string>
+        <string id="portions">Porcje</string>
+        <string id="ingredients">Składniki</string>
+        <string id="instructions">Instrukcje</string>
     </language>
 </languagepack>

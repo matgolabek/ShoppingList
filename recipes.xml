@@ -2,6 +2,8 @@
 <recipes>
     <recipe>
         <name>Spaghetti</name>
+        <id>0</id>
+        <duration>1 h</duration>
         <type lang="en">Dinner</type>
         <type lang="pl">Obiad</type>
         <portions>2</portions>
@@ -12,33 +14,33 @@
                 <quantity>400 g</quantity>
             </ingredient>
             <ingredient>
+                <name lang="en">Minced pork</name>
+                <name lang="pl">Mięso mielone</name>
+                <quantity lang="en">400 g</quantity>
+                <quantity lang="pl">400 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Passata</name>
+                <name lang="pl">Passata</name>
+                <quantity>700 ml</quantity>
+            </ingredient>
+            <ingredient>
                 <name lang="en">Onion</name>
                 <name lang="pl">Cebula</name>
                 <quantity lang="en">2 pcs</quantity>
                 <quantity lang="pl">2 szt</quantity>
             </ingredient>
             <ingredient>
-                <name lang="en">Champignons</name>
-                <name lang="pl">Pieczarki</name>
+                <name lang="en">Champignon</name>
+                <name lang="pl">Pieczarka</name>
                 <quantity lang="en">5 big pcs</quantity>
                 <quantity lang="pl">5 dużych szt</quantity>
-            </ingredient>
-            <ingredient>
-                <name lang="en">Minced pork</name>
-                <name lang="pl">Mięso mielone wprz</name>
-                <quantity lang="en">400 g</quantity>
-                <quantity lang="pl">400 g</quantity>
             </ingredient>
             <ingredient>
                 <name lang="en">Red pepper</name>
                 <name lang="pl">Papryka</name>
                 <quantity lang="en">1 pc</quantity>
                 <quantity lang="pl">1 szt</quantity>
-            </ingredient>
-            <ingredient>
-                <name lang="en">Passata</name>
-                <name lang="pl">Passata</name>
-                <quantity>700 ml</quantity>
             </ingredient>
         </ingredients>
         <instructions lang="en"> Not implemented yet
@@ -48,6 +50,8 @@
     </recipe>
     <recipe>
         <name>Pesto</name>
+        <id>1</id>
+        <duration>20 min</duration>
         <type lang="en">Dinner</type>
         <type lang="pl">Obiad</type>
         <portions>2</portions>

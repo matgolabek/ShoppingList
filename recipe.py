@@ -5,11 +5,13 @@ class Recipe:
     """
     Represents a meal in the shopping list.
     """
-    def __init__(self, name: str, portions: int, mealtype: str, instructions: str = None):
+    def __init__(self, id_: int, dur: str, name: str, portions: int, mealtype: str, instructions: str = None):
+        self.id = id_
         self.name = name
         self.mealtype = mealtype
         self.portions = portions
         self.instructions = instructions
+        self.duration = dur
         self.ingredients: dict[str, str] = {}
 
     def add_product(self, product: Product) -> None:

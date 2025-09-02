@@ -2,9 +2,9 @@ from recipe import Recipe
 from product import Product
 import xml.etree.ElementTree as ET
 
-def load_recpies_from_xml(filename: str, language: str = "en") -> list[Recipe]:
+def load_recipes_from_xml(filename: str, language: str = "en") -> list[Recipe]:
     """
-    Parses the recpies from xml file with selected language.
+    Parses the recipes from xml file with selected language.
     """
     try:
         tree = ET.parse(filename)
@@ -19,6 +19,10 @@ def load_recpies_from_xml(filename: str, language: str = "en") -> list[Recipe]:
     recipes = []
 
     for recipe_xml in root.findall("recipe"):
+        id_xml = recipe_xml.find("id")
+        id_ = int(id_xml.text) if id_xml is not None else -1
+        duration_xml = recipe_xml.find("duration")
+        duration = duration_xml.text if duration_xml is not None else "0 min"
         name_xml = recipe_xml.find(f"name[@lang='{language}']")
         name = name_xml.text if name_xml is not None else recipe_xml.find("name").text
         portions_xml = recipe_xml.find(f"portions[@lang='{language}']")
@@ -28,7 +32,7 @@ def load_recpies_from_xml(filename: str, language: str = "en") -> list[Recipe]:
         instructions_xml = recipe_xml.find(f"instructions[@lang='{language}']")
         instructions = instructions_xml.text if instructions_xml is not None else recipe_xml.find("instructions").text
 
-        recipe = Recipe(name, portions, mealtype, instructions)
+        recipe = Recipe(id_, duration, name, portions, mealtype, instructions)
 
         for ingrident_xml in recipe_xml.findall("ingredients/ingredient"):
             ing_name_xml = ingrident_xml.find(f"name[@lang='{language}']")
