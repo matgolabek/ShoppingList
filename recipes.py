@@ -49,5 +49,5 @@ def load_recipes_from_xml(filename: str, language: str = "en") -> list[Recipe]:
     
 
 if __name__ == "__main__":  # quick test
-    r = load_recpies_from_xml("recipes.xml", "pl")
+    r = load_recipes_from_xml("recipes.xml", "pl")
     print(r)

@@ -14,10 +14,10 @@ from kivymd.uix.toolbar import MDTopAppBar
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.tab import MDTabs
-from kivy.properties import StringProperty
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivymd.uix.scrollview import MDScrollView
 from kivymd.uix.list import MDList, TwoLineAvatarIconListItem, OneLineAvatarIconListItem, IRightBodyTouch, TwoLineListItem, ImageLeftWidget
+from kivymd.uix.menu import MDDropdownMenu
 from kivy.metrics import dp
 from kivy.clock import Clock
 from kivy.core.window import Window
@@ -27,11 +27,128 @@ from kivymd.uix.fitimage import FitImage
 import os
 import numpy as np
 from info import Info
+from recipe import Recipe
 
 
 class RightCheckbox(IRightBodyTouch, MDCheckbox):
     """Niestandardowy kontener na checkbox po prawej stronie listy."""
     pass
+
+
+class FilterDialogContent(MDBoxLayout):
+    """Niestandardowa, przewijalna zawartość dla okna dialogowego z filtrami."""
+    def __init__(self, all_recipes, current_meal_types, current_min_time, current_max_time, **kwargs):
+        super().__init__(**kwargs)
+        self._is_updating = False
+        self.size_hint_y = None
+        self.height = Window.height * 0.5
+        self.orientation = "vertical"
+        scroll_view = MDScrollView()
+        content_layout = MDBoxLayout(
+            orientation="vertical", spacing="15dp", padding="15dp", adaptive_height=True
+        )
+
+        # --- SEKCJA 1: CHECKBOXY DLA TYPU POSIŁKU ---
+        # Dodajemy widżety do WEWNĘTRZNEGO layoutu (content_layout)
+        content_layout.add_widget(MDLabel(text="Typ posiłku:", bold=True, adaptive_height=True))
+        
+        self.meal_type_checkboxes = {}
+        meal_types = sorted(list(set([r.mealtype for r in all_recipes])))
+        for meal_type in meal_types:
+            item_layout = MDBoxLayout(adaptive_height=True)
+            checkbox = MDCheckbox(
+                size_hint_x=None,
+                width="48dp",
+                active=meal_type in current_meal_types
+            )
+            self.meal_type_checkboxes[meal_type] = checkbox
+            
+            item_layout.add_widget(checkbox)
+            item_layout.add_widget(MDLabel(text=meal_type, adaptive_height=True))
+            content_layout.add_widget(item_layout)
+
+
+class FilterDialogContent(MDBoxLayout):
+    """Zawartość okna z filtrami, używająca tylko niezawodnych checkboxów."""
+    def __init__(self, all_recipes, current_meal_types, current_time_ranges, **kwargs):
+        super().__init__(**kwargs)
+        self.size_hint_y = None
+        self.height = Window.height * 0.8
+        self.orientation = "vertical"
+        scroll_view = MDScrollView()
+        content_layout = MDBoxLayout(
+            orientation="vertical", spacing="15dp", padding="15dp", adaptive_height=True
+        )
+
+        # --- SEKCJA 1: CHECKBOXY DLA TYPU POSIŁKU (bez zmian) ---
+        content_layout.add_widget(MDLabel(text="Typ posiłku:", bold=True, adaptive_height=True))
+        self.meal_type_checkboxes = {}
+        meal_types = sorted(list(set([r.mealtype for r in all_recipes])))
+        for meal_type in meal_types:
+            item_layout = MDBoxLayout(adaptive_height=True)
+            checkbox = MDCheckbox(size_hint_x=None, width="48dp", active=meal_type in current_meal_types)
+            self.meal_type_checkboxes[meal_type] = checkbox
+            item_layout.add_widget(checkbox)
+            item_layout.add_widget(MDLabel(text=meal_type, adaptive_height=True))
+            content_layout.add_widget(item_layout)
+
+        # --- SEKCJA 2: CHECKBOXY DLA PRZEDZIAŁÓW CZASOWYCH ---
+        content_layout.add_widget(MDLabel(text="Czas przygotowania (min):", bold=True, adaptive_height=True))
+        
+        # Definiujemy nasze przedziały
+        self.time_ranges = {
+            "0-15 min": (0, 15),
+            "15-30 min": (15, 30),
+            "30-60 min": (30, 60),
+            "60+ min": (60, 9999) # Używamy dużej liczby jako "nieskończoność"
+        }
+        self.time_range_checkboxes = {}
+
+        for text, (min_val, max_val) in self.time_ranges.items():
+            item_layout = MDBoxLayout(adaptive_height=True)
+            checkbox = MDCheckbox(
+                size_hint_x=None, 
+                width="48dp",
+                active=(min_val, max_val) in current_time_ranges # Sprawdź, czy ten przedział był już zaznaczony
+            )
+            # Przechowujemy referencję do checkboxa
+            self.time_range_checkboxes[text] = checkbox
+            
+            item_layout.add_widget(checkbox)
+            item_layout.add_widget(MDLabel(text=text, adaptive_height=True))
+            content_layout.add_widget(item_layout)
+        
+        scroll_view.add_widget(content_layout)
+        self.add_widget(scroll_view)
+
+
+    def update_textfields_from_slider(self, instance, value):
+        """Aktualizuje pola tekstowe, gdy użytkownik przesuwa suwak."""
+        if self._is_updating:
+            return
+        self._is_updating = True
+        self.min_time_textfield.text = f"{int(value[0])}"
+        self.max_time_textfield.text = f"{int(value[1])}"
+        self._is_updating = False
+
+    def update_slider_from_textfields(self, instance, text):
+        """Aktualizuje suwak, gdy użytkownik wpisuje tekst w polach."""
+        if self._is_updating:
+            return
+        self._is_updating = True
+        try:
+            min_val = int(self.min_time_textfield.text) if self.min_time_textfield.text else self.time_slider.min
+            max_val = int(self.max_time_textfield.text) if self.max_time_textfield.text else self.time_slider.max
+            
+            # Zapewnij, że min <= max
+            if min_val > max_val:
+                min_val, max_val = max_val, min_val
+                
+            self.time_slider.value = [min_val, max_val]
+        except ValueError:
+            pass
+        self._is_updating = False
+
 
 
 class DialogContent(MDBoxLayout):
@@ -117,11 +234,18 @@ class ShoppingCartScreen(MDScreen):
         self.lang.register_observer(self)
 
         self.recipes = info.get_recipes()
+        self.all_recipes = info.get_recipes()
         self.checkboxes = {}
+
+        # Przechowujemy aktualny stan filtrów
+        self.active_meal_type_filters = [] # Zamiast pojedynczej wartości
+        self.active_time_ranges = [] 
+        self.search_query = ""
 
         self.layout = MDBoxLayout(orientation='vertical', padding=(dp(10), dp(10), dp(10), dp(10)))
 
-        self.toolbar = MDTopAppBar()
+        self.toolbar = MDTopAppBar(elevation=4)
+        self.set_default_toolbar_items()
         self.layout.add_widget(self.toolbar)
 
         self.recipe_list = MDList()
@@ -135,7 +259,121 @@ class ShoppingCartScreen(MDScreen):
 
         self.add_widget(self.layout)
 
-        self.populate_list()
+        self.populate_list(self.all_recipes)
+
+    def set_default_toolbar_items(self):
+        """Ustawia standardowe ikony na pasku narzędzi."""
+        self.toolbar.right_action_items = [
+            ["magnify", lambda x: self.enter_search_mode()],
+            ["filter-variant", lambda x: self.open_filter_dialog()], # <-- ZMIANA
+        ]
+        self.toolbar.left_action_items = []
+
+    def enter_search_mode(self, *args):
+        """Zamienia tytuł i ikony na pole tekstowe do wyszukiwania."""
+        self.toolbar.left_action_items = [
+            ["arrow-left", lambda x: self.exit_search_mode()]
+        ]
+        self.toolbar.right_action_items = []
+        
+        self.search_field = MDTextField(
+            hint_text="Szukaj dań lub składników...",
+            mode="fill",
+            pos_hint={'center_y': 0.5},
+            on_text_validate=self.perform_search, # Opcjonalnie: szukaj po naciśnięciu Enter
+            text=self.search_query # Przywróć poprzednie zapytanie
+        )
+        # Reaguj na każdą zmianę tekstu
+        self.search_field.bind(text=self.perform_search)
+        
+        self.toolbar.title = ""
+        self.toolbar.add_widget(self.search_field)
+
+    def exit_search_mode(self, *args):
+        """Przywraca domyślny wygląd paska narzędzi."""
+        self.toolbar.remove_widget(self.search_field)
+        self.toolbar.title = "Shopping Cart"
+        self.set_default_toolbar_items()
+
+    def perform_search(self, instance, text=""):
+        """Zapisuje frazę i uruchamia filtrowanie."""
+        self.search_query = instance.text.lower()
+        self.apply_filters_and_search()
+
+    def open_filter_dialog(self):
+        """Otwiera okno dialogowe z zaawansowanymi filtrami."""
+        # Stwórz i zapisz referencję do zawartości okna
+        self.current_filter_content = FilterDialogContent(
+            all_recipes=self.all_recipes,
+            current_meal_types=self.active_meal_type_filters,
+            current_time_ranges=self.active_time_ranges
+        )
+        
+        self.filter_dialog = MDDialog(
+            title="Filtry",
+            type="custom",
+            content_cls=self.current_filter_content, # Użyj zapisanej zawartości
+            buttons=[
+                MDFlatButton(text="ANULUJ", on_release=lambda x: self.filter_dialog.dismiss()),
+                # Przycisk teraz bezpośrednio wywołuje metodę, bez przekazywania argumentów
+                MDRaisedButton(text="ZASTOSUJ", on_release=self.apply_dialog_filters),
+            ]
+        )
+        self.filter_dialog.open()
+
+    def apply_dialog_filters(self, *args): # Przyjmuje teraz *args, bo jest wywoływana przez on_release
+        """Pobiera dane z zapisanej zawartości okna i aktualizuje listę."""
+        # Odwołaj się do zapisanej zawartości zamiast argumentu
+        content = self.current_filter_content
+        
+        # Odczytaj stan checkboxów typu posiłku
+        self.active_meal_type_filters = [
+            meal_type for meal_type, checkbox in content.meal_type_checkboxes.items() if checkbox.active
+        ]
+        
+        # Odczytaj stan checkboxów z przedziałami czasu
+        self.active_time_ranges = []
+        for text, checkbox in content.time_range_checkboxes.items():
+            if checkbox.active:
+                self.active_time_ranges.append(content.time_ranges[text])
+        
+        self.apply_filters_and_search()
+        self.filter_dialog.dismiss()
+
+
+    def apply_filters_and_search(self):
+        """Filtruje listę na podstawie listy typów i suwaka czasu."""
+        results = self.all_recipes
+
+        # 1. Filtrowanie po typie posiłku (teraz sprawdza, czy typ jest na liście)
+        if self.active_meal_type_filters:
+            results = [
+                recipe for recipe in results 
+                if recipe.mealtype in self.active_meal_type_filters
+            ]
+
+        # 2. Filtrowanie po czasie przygotowania
+        if self.active_time_ranges:
+            # Przefiltruj, jeśli jakikolwiek przedział jest aktywny
+            filtered_results = []
+            for recipe in results:
+                # Sprawdź, czy czas przepisu pasuje do KTÓREGOKOLWIEK z zaznaczonych przedziałów
+                is_match = any(
+                    min_t < recipe.duration_int <= max_t for min_t, max_t in self.active_time_ranges
+                )
+                if is_match:
+                    filtered_results.append(recipe)
+            results = filtered_results
+            
+        # 3. Wyszukiwanie tekstowe (bez zmian)
+        if self.search_query:
+            results = [
+                recipe for recipe in results
+                if self.search_query in recipe.name.lower() or 
+                any(self.search_query in ingredient.lower() for ingredient in recipe.ingredients.keys())
+            ]
+
+        self.populate_list(results)
 
     def show_recipe_popup(self, recipe):
             """Tworzy i wyświetla popup ze szczegółami przepisu."""
@@ -163,14 +401,16 @@ class ShoppingCartScreen(MDScreen):
             self.dialog.content_cls = DialogContent(recipe=recipe, lang=self.lang)
             self.dialog.open()
 
-    def populate_list(self):
+    def populate_list(self, recipes_to_display: list[Recipe] = None):
         """
         Iteruje przez listę przepisów i dodaje je jako widżety do MDList.
         """
+        if recipes_to_display is None:
+            recipes_to_display = self.all_recipes
         # Czyścimy listę na wypadek, gdyby metoda była wywoływana ponownie
         self.recipe_list.clear_widgets()
         
-        for recipe in self.recipes:
+        for recipe in recipes_to_display:
             image_path = f"imgs/recipe{recipe.id}/0.png"      
             image_widget = ImageLeftWidget(source=image_path)
 
