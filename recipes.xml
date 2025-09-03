@@ -4,6 +4,7 @@
         <name>Spaghetti</name>
         <id>0</id>
         <duration>1 h</duration>
+        <vegetarian>false</vegetarian>
         <type lang="en">Dinner</type>
         <type lang="pl">Obiad</type>
         <portions>2</portions>
@@ -52,6 +53,7 @@
         <name>Pesto</name>
         <id>1</id>
         <duration>20 min</duration>
+        <vegetarian>true</vegetarian>
         <type lang="en">Dinner</type>
         <type lang="pl">Obiad</type>
         <portions>2</portions>

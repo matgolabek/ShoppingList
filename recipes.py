@@ -29,10 +29,12 @@ def load_recipes_from_xml(filename: str, language: str = "en") -> list[Recipe]:
         portions = int(portions_xml.text) if portions_xml is not None else int(recipe_xml.find("portions").text)
         mealtype_xml = recipe_xml.find(f"type[@lang='{language}']")
         mealtype = mealtype_xml.text if mealtype_xml is not None else recipe_xml.find("type").text
+        vegetarian_xml = recipe_xml.find("vegetarian")
+        vegetarian = vegetarian_xml.text.lower() == "true" if vegetarian_xml is not None else False
         instructions_xml = recipe_xml.find(f"instructions[@lang='{language}']")
         instructions = instructions_xml.text if instructions_xml is not None else recipe_xml.find("instructions").text
 
-        recipe = Recipe(id_, duration, name, portions, mealtype, instructions)
+        recipe = Recipe(id_, duration, name, portions, mealtype, vegetarian, instructions)
 
         for ingrident_xml in recipe_xml.findall("ingredients/ingredient"):
             ing_name_xml = ingrident_xml.find(f"name[@lang='{language}']")

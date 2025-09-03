@@ -16,6 +16,20 @@
         <string id="portions">Portions</string>
         <string id="ingredients">Ingredients</string>
         <string id="instructions">Instructions</string>
+        <string id="search_hint">Search for dishes or ingrs</string>
+        <string id="cancel">Cancel</string>
+        <string id="apply">Apply</string>
+        <string id="meal_type">Meal Type</string>
+        <string id="preparation_time">Preparation Time (min)</string>
+        <string id="vegetarian">Vegetarian</string>
+        <string id="yes">Yes</string>
+        <string id="filters">Filters</string>
+        <string id="Dinner">Dinner</string>
+        <string id="Breakfast">Breakfast</string>
+        <string id="Lunch">Lunch</string>
+        <string id="Supper">Supper</string>
+        <string id="Dessert">Dessert</string>
+        <string id="Snack">Snack</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -33,5 +47,19 @@
         <string id="portions">Porcje</string>
         <string id="ingredients">Składniki</string>
         <string id="instructions">Instrukcje</string>
+        <string id="search_hint">Szukaj dań lub składników</string>
+        <string id="cancel">Anuluj</string>
+        <string id="apply">Zastosuj</string>
+        <string id="meal_type">Rodzaj</string>
+        <string id="preparation_time">Czas przygotowania (min)</string>
+        <string id="vegetarian">Wegetariańskie</string>
+        <string id="yes">Tak</string>
+        <string id="filters">Filtry</string>
+        <string id="Dinner">Obiad</string>
+        <string id="Breakfast">Śniadanie</string>
+        <string id="Lunch">Lunch</string>
+        <string id="Supper">Kolacja</string>
+        <string id="Dessert">Deser</string>
+        <string id="Snack">Przekąska</string>
     </language>
 </languagepack>
