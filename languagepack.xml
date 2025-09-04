@@ -30,6 +30,11 @@
         <string id="Supper">Supper</string>
         <string id="Dessert">Dessert</string>
         <string id="Snack">Snack</string>
+        <string id="summary">Summary</string>
+        <string id="show_list">Make Shopping List</string>
+        <string id="shopping_list">Shopping List</string>
+        <string id="no_items_selected">No items selected. Please select some items to add to your shopping list.</string>
+        <string id="send">Send</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -61,5 +66,10 @@
         <string id="Supper">Kolacja</string>
         <string id="Dessert">Deser</string>
         <string id="Snack">Przekąska</string>
+        <string id="summary">Podsumowanie</string>
+        <string id="show_list">Stwórz listę zakupów</string>
+        <string id="shopping_list">Lista zakupów</string>
+        <string id="no_items_selected">Pusta lista. Proszę wybrać jakieś pozycje, aby dodać je do listy zakupów.</string>
+        <string id="send">Wyślij</string>
     </language>
 </languagepack>

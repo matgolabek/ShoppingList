@@ -31,6 +31,10 @@ from info import Info
 from recipe import Recipe
 
 
+class RightTextFieldContainer(IRightBodyTouch, MDBoxLayout):
+    adaptive_width = True
+
+
 class RightCheckbox(IRightBodyTouch, MDCheckbox):
     """
     Custom container for a checkbox on the right side of the list.
@@ -103,6 +107,74 @@ class FilterDialogContent(MDBoxLayout):
         item_layout.add_widget(MDLabel(text=self.lang.get_string("yes"), adaptive_height=True))
         content_layout.add_widget(item_layout)
 
+        scroll_view.add_widget(content_layout)
+        self.add_widget(scroll_view)
+
+
+class SummaryDialogContent(MDBoxLayout):
+    """
+    Custom content for the summary dialog.
+    """
+    def __init__(self, all_recipes, checked_recipes, lang, **kwargs):
+        super().__init__(**kwargs)
+        self.checked_recipes = checked_recipes
+        self.all_recipes = all_recipes
+        self.text_fields = {}
+        self.size_hint_y = None
+        self.lang = lang
+        self.height = Window.height * 0.5
+        self.orientation = "vertical"
+        scroll_view = MDScrollView()
+        content_layout = MDBoxLayout(
+            orientation="vertical", spacing="40dp", padding="15dp", adaptive_height=True
+        )
+
+        for recipe_id in self.checked_recipes:
+            recipe = self.all_recipes[recipe_id]
+            image_path = f"imgs/recipe{recipe.id}/0.png"
+            image_widget = ImageLeftWidget(source=image_path)
+
+            main_ingredients = f"{list(recipe.ingredients.keys())[0]}, {list(recipe.ingredients.keys())[1]}, {list(recipe.ingredients.keys())[2]}..." if len(recipe.ingredients) > 3 else ", ".join(list(recipe.ingredients.keys()))
+
+            list_item = MDBoxLayout(
+                adaptive_height=True,
+                spacing=dp(10)
+            )
+
+            list_item.add_widget(image_widget)
+
+            text_container = MDBoxLayout(
+                orientation='vertical',
+                adaptive_height=True,
+                pos_hint={'center_y': 0.5}
+            )
+            text_container.add_widget(
+                MDLabel(text=f"{recipe.name}", adaptive_height=True)
+            )
+            main_ingredients = f"{list(recipe.ingredients.keys())[0]}, {list(recipe.ingredients.keys())[1]}, ..." if len(recipe.ingredients) > 2 else ", ".join(list(recipe.ingredients.keys()))
+            text_container.add_widget(
+                MDLabel(
+                    text=f"{main_ingredients}",
+                    theme_text_color="Secondary",
+                    font_style="Caption",
+                    adaptive_height=True
+                )
+            )
+            list_item.add_widget(text_container)
+
+            portions_field = MDTextField(
+                text="1",
+                size_hint_x=None,
+                width=dp(30),
+                max_text_length=1,
+                halign="center",
+                input_filter="int",
+                pos_hint={'center_y': 0.5}
+            )
+            self.text_fields[recipe.id] = portions_field
+            list_item.add_widget(portions_field)
+
+            content_layout.add_widget(list_item)
         scroll_view.add_widget(content_layout)
         self.add_widget(scroll_view)
 
@@ -189,6 +261,7 @@ class ShoppingCartScreen(MDScreen):
         self.recipes = info.get_recipes()
         self.all_recipes = info.get_recipes()
         self.checkboxes = {}
+        self.summary_text_fields = {}
 
         # Store the current filter states
         self.active_meal_type_filters = []
@@ -285,7 +358,6 @@ class ShoppingCartScreen(MDScreen):
             content_cls=self.current_filter_content, # Użyj zapisanej zawartości
             buttons=[
                 MDFlatButton(text=self.lang.get_string("cancel"), on_release=lambda x: self.filter_dialog.dismiss()),
-                # Przycisk teraz bezpośrednio wywołuje metodę, bez przekazywania argumentów
                 MDRaisedButton(text=self.lang.get_string("apply"), on_release=self.apply_dialog_filters),
             ]
         )
@@ -444,8 +516,136 @@ class ShoppingCartScreen(MDScreen):
 
     def update_translation(self):
         self.proceed_button.text = self.lang.get_string("proceed")
-        self.recipes = self.info.get_recipes()
+        self.all_recipes = self.info.get_recipes()
         self.apply_filters_and_search()
 
     def show_summary(self, *args):
-        pass
+        """
+        Opens a dialog with summary information.
+        """
+        # Create and store a reference to the dialog content
+        self.current_summary_content = SummaryDialogContent(
+            all_recipes=self.all_recipes,
+            checked_recipes=[recipe_id for (recipe_id, recipe_checkbox) in self.checkboxes.items() if recipe_checkbox.active],
+            lang=self.lang,
+        )
+
+        self.summary_dialog = MDDialog(
+            title=self.lang.get_string("summary"),
+            type="custom",
+            content_cls=self.current_summary_content,
+            buttons=[
+                MDFlatButton(text=self.lang.get_string("cancel"), on_release=lambda x: self.summary_dialog.dismiss()),
+                MDRaisedButton(text=self.lang.get_string("show_list"), on_release=lambda x: self.show_list_popup()),
+            ]
+        )
+        self.summary_dialog.open()
+
+    def show_list_popup(self):
+        """
+        Generates and shows the shopping list based on selected recipes and portions.
+        """
+        content = self.current_summary_content
+        text_fields = {recipe_id: field for recipe_id, field in content.text_fields.items()}
+        checkboxes = {recipe_id: checkbox for recipe_id, checkbox in self.checkboxes.items()}
+
+        shopping_list_text = self.generate_shopping_list(text_fields, checkboxes)
+
+        text_field = MDTextField(
+            text=shopping_list_text or self.lang.get_string("no_items_selected"),
+            multiline=True,
+            mode="fill",
+            font_name="consola.ttf",
+            size_hint_y=None  # Kluczowe dla działania w ScrollView
+        )
+        text_field.bind(minimum_height=text_field.setter('height'))
+
+        scroll_view = MDScrollView(
+            size_hint_y=None,
+            height=Window.height * 0.7  # Możesz dostosować tę wysokość
+        )
+        scroll_view.add_widget(text_field)
+
+        # Show the generated shopping list in a dialog
+        self.list_dialog = MDDialog(
+            title=self.lang.get_string("shopping_list"),
+            type="custom",
+            content_cls=scroll_view,
+            buttons=[
+                MDFlatButton(
+                    text=self.lang.get_string("close"),
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    on_release=lambda x: self.list_dialog.dismiss()
+                ),
+                MDRaisedButton(
+                    text=self.lang.get_string("send"),
+                    theme_text_color="Custom",
+                    on_release=lambda x: self.list_dialog.dismiss()
+                )
+            ]
+        )
+        self.list_dialog.open()
+        self.summary_dialog.dismiss()
+
+    def generate_shopping_list(self, text_fields, checkboxes):
+        """
+        Generates a consolidated shopping list based on selected recipes and their portions.
+
+        :param text_fields: Dictionary mapping recipe IDs to their corresponding portion text fields.
+        :param checkboxes: Dictionary mapping recipe IDs to their corresponding checkbox states.
+        :return: A formatted string representing the shopping list.
+        """
+        consolidated_ingredients = {}
+
+        for recipe_id, checkbox in checkboxes.items():
+            if checkbox.active:
+                # Get the number of portions from the corresponding text field
+                portions_field = text_fields.get(recipe_id)
+                try:
+                    portions = int(portions_field.text) if portions_field and portions_field.text.isdigit() else 1
+                except ValueError:
+                    portions = 1  # Default to 1 if conversion fails
+
+                recipe = self.all_recipes[recipe_id]
+
+                for ingredient_name, ingredient_quantity in recipe.ingredients.items():
+                    # Split the quantity into numeric and unit parts
+                    parts = ingredient_quantity.split(' ', 1)
+                    if len(parts) == 2:
+                        try:
+                            quantity = float(parts[0])
+                            unit = parts[1]
+                        except ValueError:
+                            quantity = 0
+                            unit = ingredient_quantity
+                    else:
+                        try:
+                            quantity = float(parts[0])
+                            unit = ""
+                        except ValueError:
+                            quantity = 0
+                            unit = ingredient_quantity
+
+                    total_quantity = quantity * portions
+
+                    if ingredient_name in consolidated_ingredients:
+                        existing_quantity, existing_unit = consolidated_ingredients[ingredient_name]
+                        if existing_unit == unit:
+                            consolidated_ingredients[ingredient_name] = (existing_quantity + total_quantity, unit)
+                        else:
+                            # If units differ, we can choose to concatenate or handle differently
+                            consolidated_ingredients[ingredient_name] = (f"{existing_quantity} {existing_unit} + {total_quantity} {unit}", "")
+                    else:
+                        consolidated_ingredients[ingredient_name] = (total_quantity, unit)
+
+        # Format the shopping list as a string
+        shopping_list_lines = []
+        for ingredient_name, (quantity, unit) in consolidated_ingredients.items():
+            if isinstance(quantity, float) and quantity.is_integer():
+                quantity = int(quantity)  # Convert to int if it's a whole number
+            shopping_list_lines.append(f"- {ingredient_name}: {quantity} {unit}".strip())
+
+        constant_shopping_list_elements = self.info.get_constant_shopping_list_elements()
+
+        return self.lang.get_string("shopping_list") + "\n=============\n" + "\n".join(sorted(shopping_list_lines)) + constant_shopping_list_elements
