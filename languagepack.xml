@@ -41,6 +41,18 @@
         <string id="option-none">None</string>
         <string id="default_list_elements">Constant shopping list elements</string>
         <string id="provide_email">Provide your email</string>
+        <string id="save_file">Save file</string>
+        <string id="text_file">Text file</string>
+        <string id="mail_greeting">Hello!
+This email was sent automatically by TheCart application.</string>
+        <string id="mail_closing">Regards,
+TheCart Team</string>
+        <string id="email_sent">Success</string>
+        <string id="email_failed">Failure</string>
+        <string id="email_sent_success">Successfully sent an email.</string>
+        <string id="email_sent_failure">Unfortunately, the email could not be sent.</string>
+        <string id="ok">OK</string>
+        <string id="wrong_email_settings">Please check your email settings.</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -83,5 +95,17 @@
         <string id="option-none">Brak</string>
         <string id="default_list_elements">Stałe elementy listy zakupów</string>
         <string id="provide_email">Podaj swój e-mail</string>
+        <string id="save_file">Zapisz plik</string>
+        <string id="text_file">Plik tekstowy</string>
+        <string id="mail_greeting">Cześć!
+Ten e-mail został wysłany automatycznie przez aplikację TheCart.</string>
+        <string id="mail_closing">Pozdrawiamy
+Zespół TheCart</string>
+        <string id="email_sent">Sukces</string>
+        <string id="email_failed">Niepowodzenie</string>
+        <string id="email_sent_success">E-mail został pomyślnie wysłany.</string>
+        <string id="email_sent_failure">Niestety, nie udało się wysłać e-maila.</string>
+        <string id="ok">OK</string>
+        <string id="wrong_email_settings">Proszę sprawdzić ustawienia e-mail.</string>
     </language>
 </languagepack>

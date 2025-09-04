@@ -25,10 +25,16 @@ from kivy.core.window import Window
 from kivy.utils import get_hex_from_color
 from kivymd.uix.fitimage import FitImage
 
+from plyer import filechooser
+import smtplib
+import ssl
+from email.message import EmailMessage
+import json
 import os
 import numpy as np
 from info import Info
 from recipe import Recipe
+from datetime import date
 
 
 class RightTextFieldContainer(IRightBodyTouch, MDBoxLayout):
@@ -519,11 +525,39 @@ class ShoppingCartScreen(MDScreen):
         self.all_recipes = self.info.get_recipes()
         self.apply_filters_and_search()
 
+    def show_save_dialog(self, *args):
+        """
+        Exports the shopping list to a text file.
+        """
+        try:
+            filechooser.save_file(
+                title=self.lang.get_string("save_file"),
+                filters=["*.txt"],
+                on_selection=self.handle_save_selection
+            )
+        except Exception as e:
+            return
+
+    def handle_save_selection(self, selection):
+        """
+        Saves the shopping list to the selected file path.
+        """
+        if not selection:
+            return
+
+        save_path = selection[0]
+        print(f"Wybrano ścieżkę: {save_path}")
+
+        try:
+            with open(save_path, 'w', encoding='utf-8') as f:
+                f.write(self.text_field.text)
+        except Exception as e:
+            return
+
     def show_summary(self, *args):
         """
         Opens a dialog with summary information.
         """
-        # Create and store a reference to the dialog content
         self.current_summary_content = SummaryDialogContent(
             all_recipes=self.all_recipes,
             checked_recipes=[recipe_id for (recipe_id, recipe_checkbox) in self.checkboxes.items() if recipe_checkbox.active],
@@ -549,22 +583,22 @@ class ShoppingCartScreen(MDScreen):
         text_fields = {recipe_id: field for recipe_id, field in content.text_fields.items()}
         checkboxes = {recipe_id: checkbox for recipe_id, checkbox in self.checkboxes.items()}
 
-        shopping_list_text = self.generate_shopping_list(text_fields, checkboxes)
+        self.shopping_list_text = self.generate_shopping_list(text_fields, checkboxes)
 
-        text_field = MDTextField(
-            text=shopping_list_text or self.lang.get_string("no_items_selected"),
+        self.text_field = MDTextField(
+            text=self.shopping_list_text or self.lang.get_string("no_items_selected"),
             multiline=True,
             mode="fill",
             font_name="consola.ttf",
-            size_hint_y=None  # Kluczowe dla działania w ScrollView
+            size_hint_y=None,
         )
-        text_field.bind(minimum_height=text_field.setter('height'))
+        self.text_field.bind(minimum_height=self.text_field.setter('height'))
 
         scroll_view = MDScrollView(
             size_hint_y=None,
-            height=Window.height * 0.7  # Możesz dostosować tę wysokość
+            height=Window.height * 0.7
         )
-        scroll_view.add_widget(text_field)
+        scroll_view.add_widget(self.text_field)
 
         # Show the generated shopping list in a dialog
         self.list_dialog = MDDialog(
@@ -581,12 +615,12 @@ class ShoppingCartScreen(MDScreen):
                 MDRaisedButton(
                     text=self.lang.get_string("export"),
                     theme_text_color="Custom",
-                    on_release=lambda x: self.list_dialog.dismiss()
+                    on_release=lambda x: self.show_save_dialog()
                 ),
                 MDRaisedButton(
                     text=self.lang.get_string("send"),
                     theme_text_color="Custom",
-                    on_release=lambda x: self.list_dialog.dismiss()
+                    on_release=lambda x: self.send_email()
                 )
             ]
         )
@@ -611,6 +645,9 @@ class ShoppingCartScreen(MDScreen):
                     portions = int(portions_field.text) if portions_field and portions_field.text.isdigit() else 1
                 except ValueError:
                     portions = 1  # Default to 1 if conversion fails
+
+                if portions < 0:
+                    portions = 0
 
                 recipe = self.all_recipes[recipe_id]
 
@@ -649,8 +686,85 @@ class ShoppingCartScreen(MDScreen):
         for ingredient_name, (quantity, unit) in consolidated_ingredients.items():
             if isinstance(quantity, float) and quantity.is_integer():
                 quantity = int(quantity)  # Convert to int if it's a whole number
+                if quantity == 0:
+                    continue
             shopping_list_lines.append(f"- {ingredient_name}: {quantity} {unit}".strip())
 
         constant_shopping_list_elements = self.info.get_constant_shopping_list_elements()
 
         return self.lang.get_string("shopping_list") + "\n=============\n" + "\n".join(sorted(shopping_list_lines)) + "\n" + constant_shopping_list_elements
+
+    def send_email(self, *args):
+        """
+        Sends the shopping list via email.
+        """
+        if self.info.email == "" or self.info.send_option != "option-email":
+            failure_dialog = MDDialog(
+                title=self.lang.get_string("email_failed"),
+                text=self.lang.get_string("wrong_email_settings"),
+                buttons=[
+                    MDRaisedButton(
+                        text=self.lang.get_string("ok"),
+                        text_color=self.theme_cls.primary_color,
+                        on_release=lambda x: failure_dialog.dismiss()
+                    )
+                ]
+            )
+            failure_dialog.open()
+            return
+
+        with open('password.json') as f:
+            data = json.load(f)
+        receiver_email = self.info.email
+        sender_email = data.get("mail")
+        password = data.get("password")
+
+        msg = EmailMessage()
+
+        today_str = date.today().strftime("%d-%m-%Y")
+        msg['Subject'] = f"{self.lang.get_string('shopping_list')} {today_str}"
+        msg['From'] = sender_email
+        msg['To'] = receiver_email
+
+        msg.set_content(
+            self.lang.get_string("mail_greeting") + "\n\n" +
+            self.text_field.text + "\n\n" +
+            self.lang.get_string("mail_closing")
+        )
+
+        context = ssl.create_default_context()
+
+        smtp_server = "smtp.gmail.com"
+        smtp_port = 465
+
+        try:
+            with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
+                server.login(sender_email, password)
+                server.send_message(msg)
+            
+            confirmation_dialog = MDDialog(
+                title=self.lang.get_string("email_sent"),
+                text=self.lang.get_string("email_sent_success"),
+                buttons=[
+                    MDRaisedButton(
+                        text=self.lang.get_string("ok"),
+                        text_color=self.theme_cls.primary_color,
+                        on_release=lambda x: confirmation_dialog.dismiss()
+                    )
+                ]
+            )
+            confirmation_dialog.open()
+        except Exception as e:
+            failure_dialog = MDDialog(
+                title=self.lang.get_string("email_failed"),
+                text=self.lang.get_string("email_sent_failure"),
+                buttons=[
+                    MDRaisedButton(
+                        text=self.lang.get_string("ok"),
+                        text_color=self.theme_cls.primary_color,
+                        on_release=lambda x: failure_dialog.dismiss()
+                    )
+                ]
+            )
+            failure_dialog.open()
+            return
