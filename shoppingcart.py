@@ -245,7 +245,7 @@ class DialogContent(MDBoxLayout):
         content.add_widget(MDLabel(text=portions_text, markup=True, adaptive_height=True))
         duration_text = f"[color={primary_hex_color}]{self.lang.get_string('duration')}:[/color] [color={secondary_hex_color}]{recipe.duration}[/color]"
         content.add_widget(MDLabel(text=duration_text, markup=True, adaptive_height=True))
-        ingredients_pretext = f"[color={primary_hex_color}]{self.lang.get_string('ingredients')}:\n[/color] [color={secondary_hex_color}]{ingredients_text}[/color]"
+        ingredients_pretext = f"[color={primary_hex_color}]{self.lang.get_string('ingredients')}:\n[/color][color={secondary_hex_color}]{ingredients_text}[/color]"
         content.add_widget(MDLabel(text=ingredients_pretext, markup=True, adaptive_height=True))
         instructions_text = f"[color={primary_hex_color}]{self.lang.get_string('instructions')}:[/color]"
         content.add_widget(MDLabel(text=instructions_text, markup=True, adaptive_height=True))
@@ -300,6 +300,7 @@ class ShoppingCartScreen(MDScreen):
         """
         Sets the default icons on the toolbar.
         """
+        self.toolbar.title = self.lang.get_string("shopping_cart")
         self.toolbar.right_action_items = [["filter-variant", lambda x: self.open_filter_dialog()]]
         self.toolbar.left_action_items = [["magnify", lambda x: self.enter_search_mode()]]
 
@@ -309,6 +310,7 @@ class ShoppingCartScreen(MDScreen):
         """
         self.toolbar.left_action_items = []
         self.toolbar.right_action_items = []
+        self.toolbar.title = ""
 
         self.middle_layout = MDBoxLayout(orientation="horizontal")
 
@@ -437,32 +439,32 @@ class ShoppingCartScreen(MDScreen):
         self.populate_list(results)
 
     def show_recipe_popup(self, recipe):
-            """
-            Creates and shows a popup with the recipe details.
-            """
-            checkbox = self.checkboxes.get(recipe.id)
-            button_text = self.lang.get_string("add_to_list") if checkbox and not checkbox.active else self.lang.get_string("remove_from_list")
-            self.dialog = MDDialog(
-                title=recipe.name,
-                type="custom",
-                content_cls=DialogContent(recipe=recipe, lang=self.lang),
-                buttons=[
-                    MDRaisedButton(
-                        text=button_text,
-                        md_bg_color=self.theme_cls.primary_color,
-                        on_release=lambda x: self.toggle_checkbox_and_dismiss(recipe)
-                    ),
-                    MDFlatButton(
-                        text=self.lang.get_string("close"),
-                        theme_text_color="Custom",
-                        text_color=self.theme_cls.primary_color,
-                        on_release=lambda x: self.dialog.dismiss()
-                    )
-                ],
-            )
-            self.dialog.title = recipe.name
-            self.dialog.content_cls = DialogContent(recipe=recipe, lang=self.lang)
-            self.dialog.open()
+        """
+        Creates and shows a popup with the recipe details.
+        """
+        checkbox = self.checkboxes.get(recipe.id)
+        button_text = self.lang.get_string("add_to_list") if checkbox and not checkbox.active else self.lang.get_string("remove_from_list")
+        self.dialog = MDDialog(
+            title=recipe.name,
+            type="custom",
+            content_cls=DialogContent(recipe=recipe, lang=self.lang),
+            buttons=[
+                MDRaisedButton(
+                    text=button_text,
+                    md_bg_color=self.theme_cls.primary_color,
+                    on_release=lambda x: self.toggle_checkbox_and_dismiss(recipe)
+                ),
+                MDFlatButton(
+                    text=self.lang.get_string("close"),
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    on_release=lambda x: self.dialog.dismiss()
+                )
+            ],
+        )
+        self.dialog.title = recipe.name
+        self.dialog.content_cls = DialogContent(recipe=recipe, lang=self.lang)
+        self.dialog.open()
 
     def populate_list(self, recipes_to_display: list[Recipe] = None):
         """
@@ -521,6 +523,7 @@ class ShoppingCartScreen(MDScreen):
         pass
 
     def update_translation(self):
+        self.toolbar.title = self.lang.get_string("shopping_cart")
         self.proceed_button.text = self.lang.get_string("proceed")
         self.all_recipes = self.info.get_recipes()
         self.apply_filters_and_search()
@@ -705,7 +708,7 @@ class ShoppingCartScreen(MDScreen):
                 buttons=[
                     MDRaisedButton(
                         text=self.lang.get_string("ok"),
-                        text_color=self.theme_cls.primary_color,
+                        theme_text_color="Custom",
                         on_release=lambda x: failure_dialog.dismiss()
                     )
                 ]
@@ -748,7 +751,7 @@ class ShoppingCartScreen(MDScreen):
                 buttons=[
                     MDRaisedButton(
                         text=self.lang.get_string("ok"),
-                        text_color=self.theme_cls.primary_color,
+                        theme_text_color="Custom",
                         on_release=lambda x: confirmation_dialog.dismiss()
                     )
                 ]
@@ -761,7 +764,7 @@ class ShoppingCartScreen(MDScreen):
                 buttons=[
                     MDRaisedButton(
                         text=self.lang.get_string("ok"),
-                        text_color=self.theme_cls.primary_color,
+                        theme_text_color="Custom",
                         on_release=lambda x: failure_dialog.dismiss()
                     )
                 ]

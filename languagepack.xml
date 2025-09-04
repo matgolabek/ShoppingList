@@ -5,6 +5,7 @@
         <string id="settings">Settings</string>
         <string id="en">english</string>
         <string id="pl">polski</string>
+        <string id="shopping_cart">Shopping Cart</string>
         <string id="free_view">Free View</string>
         <string id="language">Language</string>
         <string id="email">Email Address</string>
@@ -53,13 +54,16 @@ TheCart Team</string>
         <string id="email_sent_failure">Unfortunately, the email could not be sent.</string>
         <string id="ok">OK</string>
         <string id="wrong_email_settings">Please check your email settings.</string>
+        <string id="add_recipe">Add Recipe</string>
+        <string id="edit_recipe">Edit Recipe</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
         <string id="settings">Ustawienia</string>
         <string id="en">english</string>
         <string id="pl">polski</string>
-        <string id="free_view">Widok Swobodny</string>
+        <string id="shopping_cart">Koszyk</string>
+        <string id="free_view">Przeglądaj</string>
         <string id="language">Język</string>
         <string id="email">Adres e-mail</string>
         <string id="close">Zamknij</string>
@@ -107,5 +111,7 @@ Zespół TheCart</string>
         <string id="email_sent_failure">Niestety, nie udało się wysłać e-maila.</string>
         <string id="ok">OK</string>
         <string id="wrong_email_settings">Proszę sprawdzić ustawienia e-mail.</string>
+        <string id="add_recipe">Dodaj przepis</string>
+        <string id="edit_recipe">Edytuj przepis</string>
     </language>
 </languagepack>

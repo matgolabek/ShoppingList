@@ -10,10 +10,11 @@ class Info:
         self.email = ""
         self.send_option = "option-email"
         self.constant_shopping_list_elements = "=============\n"
+        self.recipes_file = "recipes.xml"
 
     def get_recipes(self):
-        return load_recipes_from_xml("recipes.xml", language=self.language.current_language)
-    
+        return load_recipes_from_xml(self.recipes_file, language=self.language.current_language)
+
     def get_constant_shopping_list_elements(self):
         return self.constant_shopping_list_elements
     
