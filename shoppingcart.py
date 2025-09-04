@@ -579,6 +579,11 @@ class ShoppingCartScreen(MDScreen):
                     on_release=lambda x: self.list_dialog.dismiss()
                 ),
                 MDRaisedButton(
+                    text=self.lang.get_string("export"),
+                    theme_text_color="Custom",
+                    on_release=lambda x: self.list_dialog.dismiss()
+                ),
+                MDRaisedButton(
                     text=self.lang.get_string("send"),
                     theme_text_color="Custom",
                     on_release=lambda x: self.list_dialog.dismiss()
@@ -648,4 +653,4 @@ class ShoppingCartScreen(MDScreen):
 
         constant_shopping_list_elements = self.info.get_constant_shopping_list_elements()
 
-        return self.lang.get_string("shopping_list") + "\n=============\n" + "\n".join(sorted(shopping_list_lines)) + constant_shopping_list_elements
+        return self.lang.get_string("shopping_list") + "\n=============\n" + "\n".join(sorted(shopping_list_lines)) + "\n" + constant_shopping_list_elements

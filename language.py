@@ -1,9 +1,9 @@
 import xml.etree.ElementTree as ET
 
 class Language:
-    def __init__(self, filepath: str):
+    def __init__(self, filepath: str, current_language: str = "en"):
         self.translations = self._load_translations(filepath)
-        self.current_language = "en"
+        self.current_language = current_language
         self.observers = []
 
     def _load_translations(self, filepath: str) -> dict:

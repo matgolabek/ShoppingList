@@ -39,7 +39,7 @@ class FreeViewScreen(MDScreen):
 
         self.layout = MDBoxLayout(orientation='vertical', padding=(dp(10), dp(10), dp(10), dp(10)))
 
-        self.title = MDLabel(text=self.lang.get_string("free_view"), halign='center', font_style='H4')
+        self.title = MDLabel(text=self.lang.get_string("free_view"), halign='center', font_style='H4', size_hint_y=None, height=dp(50))
         self.layout.add_widget(self.title)
 
         self.add_widget(self.layout)

@@ -35,6 +35,12 @@
         <string id="shopping_list">Shopping List</string>
         <string id="no_items_selected">No items selected. Please select some items to add to your shopping list.</string>
         <string id="send">Send</string>
+        <string id="export">Export</string>
+        <string id="sending_option">Default sharing option</string>
+        <string id="option-email">Email</string>
+        <string id="option-none">None</string>
+        <string id="default_list_elements">Constant shopping list elements</string>
+        <string id="provide_email">Provide your email</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -71,5 +77,11 @@
         <string id="shopping_list">Lista zakupów</string>
         <string id="no_items_selected">Pusta lista. Proszę wybrać jakieś pozycje, aby dodać je do listy zakupów.</string>
         <string id="send">Wyślij</string>
+        <string id="export">Eksportuj</string>
+        <string id="sending_option">Domyślna opcja udostępniania</string>
+        <string id="option-email">E-mail</string>
+        <string id="option-none">Brak</string>
+        <string id="default_list_elements">Stałe elementy listy zakupów</string>
+        <string id="provide_email">Podaj swój e-mail</string>
     </language>
 </languagepack>

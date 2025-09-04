@@ -6,6 +6,9 @@ from shoppingcart import ShoppingCartScreen
 from freeview import FreeViewScreen
 from settings import SettingsScreen
 
+import pickle
+import os
+
 from info import Info
 
 
@@ -18,7 +21,16 @@ class MyApp(MDApp):
         Window.size = (315, 700)
         Window.set_icon("cart.jpg")
 
-        self.info = Info()
+        self.save_file = "info.dat"
+
+        if os.path.exists(self.save_file):
+            try:
+                with open(self.save_file, 'rb') as f:
+                    self.info = pickle.load(f)
+            except Exception as e:
+                self.info = Info()
+        else:
+            self.info = Info()
 
         shopping_cart_item = MDBottomNavigationItem(name="Shopping Cart", icon="cart-outline")
         shopping_cart_item.add_widget(ShoppingCartScreen(info=self.info, name="Shoping Cart"))
@@ -36,6 +48,10 @@ class MyApp(MDApp):
         self.nav.add_widget(settings_item)
 
         return self.nav
+    
+    def on_stop(self):
+        with open(self.save_file, 'wb') as f:
+            pickle.dump(self.info, f)
 
 if __name__ == "__main__":
     MyApp().run()

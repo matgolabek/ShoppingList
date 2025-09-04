@@ -37,14 +37,19 @@ class SettingsScreen(MDScreen):
         self.lang = info.language
         self.lang.register_observer(self)
 
+        self.dialog = None
+        self.email_dialog = None
         self.lang_options_visible = False
+        self.sending_options_visible = False
 
         self.layout = MDBoxLayout(orientation='vertical', padding=dp(20), spacing=dp(20))
 
         self.title = MDLabel(
             text=self.lang.get_string("settings"),
             halign='center',
-            font_style='H4'
+            font_style='H4',
+            size_hint_y=None,
+            height=dp(50)
         )
         self.layout.add_widget(self.title)
         
@@ -60,10 +65,24 @@ class SettingsScreen(MDScreen):
 
         self.email_button = TwoLineListItem(
             text=self.lang.get_string("email"),
-            secondary_text=self.lang.get_string(f"{self.info.email}"),
-            # on_release=self.toggle_email_options
+            secondary_text=self.info.email,
+            on_release=self.provide_email_info
         )
         self.settings_list.add_widget(self.email_button)
+
+        self.sending_button = TwoLineListItem(
+            text=self.lang.get_string("sending_option"),
+            secondary_text=self.lang.get_string(self.info.send_option),
+            on_release=self.toggle_sending_options
+        )
+        self.settings_list.add_widget(self.sending_button)
+
+        self.default_list_button = TwoLineListItem(
+            text=self.lang.get_string("default_list_elements"),
+            secondary_text=self.lang.get_string(self.info.constant_shopping_list_elements.split()[0]),
+            on_release=self.toggle_default_list_options
+        )
+        self.settings_list.add_widget(self.default_list_button)
 
         self.languages_map = {"pl": "polski", "en": "english"}
         self.lang_option_widgets = []
@@ -77,10 +96,91 @@ class SettingsScreen(MDScreen):
         
             
             self.lang_option_widgets.append({"item": item, "code": code})
+
+        self.sending_option_widgets = []
+        sending_options = ["option-none", "option-email"]
+
+        for option_name in sending_options:
+            item = OneLineAvatarIconListItem(
+                text=self.lang.get_string(option_name),
+                on_release=lambda x, option=option_name: self.select_sending_option(option),
+                id=option_name
+            )
+            item.ids._left_container.padding = (dp(30), 0, 0, 0)
+            self.sending_option_widgets.append(item)
             
         self.scrollview.add_widget(self.settings_list)
         self.layout.add_widget(self.scrollview)
         self.add_widget(self.layout)
+
+    def toggle_default_list_options(self, *args):
+        """
+        Creates and opens a popup dialog to edit constant shopping list elements.
+        """
+
+        text_field = MDTextField(
+            text=self.info.constant_shopping_list_elements,
+            multiline=True,
+            mode="fill",
+            font_name="consola.ttf",
+            size_hint_y=None
+        )
+        text_field.bind(minimum_height=text_field.setter('height'))
+
+        scroll_view = MDScrollView(
+            size_hint_y=None,
+            height=Window.height * 0.6  # Wysokość okna, można dostosować
+        )
+        scroll_view.add_widget(text_field)
+
+        self.dialog = MDDialog(
+            title=self.lang.get_string("default_list_elements"),
+            type="custom",
+            content_cls=scroll_view,
+            buttons=[
+                MDFlatButton(
+                    text=self.lang.get_string("cancel"),
+                    on_release=lambda x: self.dialog.dismiss()
+                ),
+                MDRaisedButton(
+                    text=self.lang.get_string("save"),
+                    on_release=lambda x: self.save_default_list(text_field)
+                ),
+            ],
+        )
+
+        self.dialog.open()
+
+    def save_default_list(self, text_field):
+        """
+        Saves the edited constant shopping list elements and updates the main button text.
+        """
+        self.info.constant_shopping_list_elements = text_field.text
+
+        self.default_list_button.secondary_text = self.info.constant_shopping_list_elements.split()[0] if self.info.constant_shopping_list_elements else ""
+
+        self.dialog.dismiss()
+        self.dialog = None
+
+    def toggle_sending_options(self, *args):
+        """
+        Pokazuje lub ukrywa opcje wyboru sposobu wysyłania.
+        """
+        if self.sending_options_visible:
+            for widget in self.sending_option_widgets:
+                self.settings_list.remove_widget(widget)
+            self.sending_options_visible = False
+        else:
+            button_index = self.settings_list.children.index(self.sending_button)
+            for widget in reversed(self.sending_option_widgets):
+                self.settings_list.add_widget(widget, index=button_index)
+            
+            self.sending_options_visible = True
+
+    def select_sending_option(self, option):
+        self.info.send_option = option
+        self.sending_button.secondary_text = self.lang.get_string(option.lower())
+        self.toggle_sending_options()
 
     def toggle_lang_options(self, *args):
         """
@@ -101,6 +201,7 @@ class SettingsScreen(MDScreen):
         """
         Called after selecting a specific language from the expanded list.
         """
+        self.info.current_language = lang_code
         self.lang.set_language(lang_code)
         # Po wybraniu języka, automatycznie schowaj opcje
         if self.lang_options_visible:
@@ -117,7 +218,68 @@ class SettingsScreen(MDScreen):
 
         self.email_button.text = self.lang.get_string("email")
 
+        self.sending_button.text = self.lang.get_string("sending_option")
+        self.sending_button.secondary_text = self.lang.get_string(self.info.send_option)
+
+        self.default_list_button.text = self.lang.get_string("default_list_elements")
+
         for data in self.lang_option_widgets:
             string_id = self.languages_map[data["code"]]
             data["item"].text = self.lang.get_string(string_id)
-        
+
+        for widget in self.sending_option_widgets:
+            widget.text = self.lang.get_string(widget.id)
+
+    def provide_email_info(self, *args):
+        """
+        Tworzy i wyświetla okno popup do wprowadzenia adresu e-mail.
+        """
+        if not self.email_dialog:
+            self.email_field = MDTextField(
+                hint_text=self.lang.get_string("email"),
+                text=self.info.email,
+                icon_right="email",
+                pos_hint={'center_x': 0.5, 'center_y': 0.5},
+                size_hint_x=None,
+                width=300
+            )
+
+            self.email_dialog = MDDialog(
+                title=self.lang.get_string("provide_email"),
+                type="custom",
+                content_cls=self.email_field,
+                buttons=[
+                    MDFlatButton(
+                        text=self.lang.get_string("cancel"),
+                        theme_text_color="Custom",
+                        text_color=self.theme_cls.primary_color,
+                        on_release=lambda x: self.email_dialog.dismiss()
+                    ),
+                    MDRaisedButton(
+                        text=self.lang.get_string("apply"),
+                        theme_text_color="Custom",
+                        md_bg_color=self.theme_cls.primary_color,
+                        on_release=self.get_email_and_close
+                    ),
+                ],
+            )
+        self.email_dialog.open()
+
+    def get_email_and_close(self, instance):
+        """
+        Funkcja pomocnicza do pobierania e-maila i zamykania okna.
+        """
+        self.info.email = self.email_field.text
+        self.email_button.secondary_text = self.info.email
+        self.email_dialog.dismiss()
+
+    def on_stop(self):
+        """
+        Metoda wywoływana przy zamykaniu aplikacji, aby wyczyścić dialog.
+        """
+        if self.dialog:
+            self.dialog.dismiss()
+            self.dialog = None
+        if self.email_dialog:
+            self.email_dialog.dismiss()
+            self.email_dialog = None
