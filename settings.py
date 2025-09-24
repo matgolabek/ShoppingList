@@ -16,7 +16,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.tab import MDTabs
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivymd.uix.scrollview import MDScrollView
-from kivymd.uix.list import MDList, TwoLineAvatarIconListItem, OneLineAvatarIconListItem, IRightBodyTouch, TwoLineListItem, ImageLeftWidget
+from kivymd.uix.list import MDList, TwoLineAvatarIconListItem, OneLineAvatarIconListItem, IRightBodyTouch, TwoLineListItem, ImageLeftWidget, OneLineListItem
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.metrics import dp
 from kivy.clock import Clock
@@ -28,6 +28,7 @@ import os
 import numpy as np
 from info import Info
 from recipe import Recipe
+import shutil
 
 
 class SettingsScreen(MDScreen):
@@ -108,10 +109,50 @@ class SettingsScreen(MDScreen):
             )
             item.ids._left_container.padding = (dp(30), 0, 0, 0)
             self.sending_option_widgets.append(item)
+
+        self.settings_list.add_widget(OneLineListItem(text=self.lang.get_string("reset_database_title"), on_release=self.reset_the_database))
             
         self.scrollview.add_widget(self.settings_list)
         self.layout.add_widget(self.scrollview)
         self.add_widget(self.layout)
+
+    def reset_the_database(self, *args):
+        """
+        Resets the recipes database by deleting the XML file.
+        """
+        self.dialog = MDDialog(
+            title=self.lang.get_string("reset_database_title"),
+            text=self.lang.get_string("reset_database_confirm"),
+            buttons=[
+                MDFlatButton(
+                    text=self.lang.get_string("cancel"),
+                    on_release=lambda x: self.dialog.dismiss()
+                ),
+                MDRaisedButton(
+                    text=self.lang.get_string("reset"),
+                    on_release=lambda x: self._reset_database_confirm()
+                ),
+            ],
+        )
+        self.dialog.open()
+
+    def _reset_database_confirm(self):
+        if os.path.exists("recipes.xml"):
+            shutil.copyfile("recipes_original.xml", "recipes.xml")
+        for folder in os.listdir("imgs"):
+            if folder.startswith("recipe"):
+                try:
+                    n = int(folder.replace("recipe", ""))
+                    if n >= 1000 and os.path.isdir(os.path.join("imgs", folder)):
+                        for filename in os.listdir(os.path.join("imgs", folder)):
+                            file_path = os.path.join("imgs", folder, filename)
+                            if os.path.isfile(file_path):
+                                os.remove(file_path)
+                        shutil.rmtree(os.path.join("imgs", folder))
+                except ValueError:
+                    continue
+        self.dialog.dismiss()
+        self.dialog = None
 
     def toggle_default_list_options(self, *args):
         """

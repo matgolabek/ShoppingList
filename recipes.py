@@ -48,7 +48,58 @@ def load_recipes_from_xml(filename: str, language: str = "en") -> list[Recipe]:
         recipes.append(recipe)
 
     return recipes
-    
+
+
+def append_recipe_to_xml(filename: str, recipe: Recipe, language: str = "en") -> None:
+    """
+    Appends a new recipe to the xml file.
+    """
+    try:
+        tree = ET.parse(filename)
+        root = tree.getroot()
+    except FileNotFoundError as e:
+        print(f"File not found - {e}")
+        return
+    except ET.ParseError as e:
+        print(f"Not a valid XML error - {e}")
+        return
+
+    recipe_xml = ET.SubElement(root, "recipe")
+
+    id_xml = ET.SubElement(recipe_xml, "id")
+    id_xml.text = str(recipe.id)
+
+    duration_xml = ET.SubElement(recipe_xml, "duration")
+    duration_xml.text = recipe.duration
+
+    name_xml = ET.SubElement(recipe_xml, "name", lang=language)
+    name_xml.text = recipe.name
+
+    portions_xml = ET.SubElement(recipe_xml, "portions", lang=language)
+    portions_xml.text = str(recipe.portions)
+
+    type_xml = ET.SubElement(recipe_xml, "type", lang=language)
+    type_xml.text = recipe.mealtype
+
+    vegetarian_xml = ET.SubElement(recipe_xml, "vegetarian")
+    vegetarian_xml.text = "true" if recipe.vegetarian else "false"
+
+    instructions_xml = ET.SubElement(recipe_xml, "instructions", lang=language)
+    instructions_xml.text = recipe.instructions if recipe.instructions else ""
+
+    ingredients_xml = ET.SubElement(recipe_xml, "ingredients")
+
+    for product_name, product_quantity in recipe.ingredients.items():
+        ingredient_xml = ET.SubElement(ingredients_xml, "ingredient")
+
+        ing_name_xml = ET.SubElement(ingredient_xml, "name", lang=language)
+        ing_name_xml.text = product_name
+
+        ing_quantity_xml = ET.SubElement(ingredient_xml, "quantity", lang=language)
+        ing_quantity_xml.text = product_quantity
+
+    with open(filename, 'wb') as f:
+        tree.write(f, encoding="utf-8", xml_declaration=True)
 
 if __name__ == "__main__":  # quick test
     r = load_recipes_from_xml("recipes.xml", "pl")

@@ -3,7 +3,7 @@ from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.button import MDRaisedButton
-from kivymd.uix.button import MDIconButton
+from kivymd.uix.button import MDIconButton, MDRaisedButton
 from kivymd.uix.tooltip import MDTooltip
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
@@ -30,6 +30,8 @@ import os
 import numpy as np
 from info import Info
 from recipe import Recipe
+from product import Product
+from recipes import append_recipe_to_xml
 
 class FilterDialogContent(MDBoxLayout):
     """
@@ -179,84 +181,207 @@ class AddRecipeDialogContent(MDBoxLayout):
     duration_input = ObjectProperty(None)
     ingredients_input = ObjectProperty(None)
     instructions_input = ObjectProperty(None)
-    image_path = ObjectProperty(None)
     
     def __init__(self, lang, **kwargs):
         super().__init__(**kwargs)
         self.lang = lang
         self.orientation = "vertical"
         self.size_hint_y = None
-        self.height = Window.height * 0.8        
+        self.height = Window.height * 0.8    
 
-        content = MDBoxLayout(orientation='vertical', spacing="10dp")
+        self.file_manager = MDFileManager(
+            exit_manager=self.exit_manager,
+            select_path=self.select_path,
+            preview=True
+        )
+
+        self.ingredient_rows = []
+        self.dir_path = os.path.dirname(os.path.abspath(__file__))
+        self.image_paths = []
+
+        self.content = MDBoxLayout(orientation='vertical', spacing="10dp", adaptive_height=True)
         self.name_input = MDTextField(
-            hint_text="Nazwa przepisu",
+            hint_text=self.lang.get_string("recipe_name"),
+            required=True,
             mode="rectangle"
         )
-        content.add_widget(self.name_input)
-
-        self.portions_input = MDTextField(
-            hint_text="Liczba porcji",
-            mode="rectangle"
-        )
-        content.add_widget(self.portions_input)
+        self.content.add_widget(self.name_input)
 
         self.duration_input = MDTextField(
-            hint_text="Czas przygotowania (minuty)",
-            mode="rectangle"
-        )
-        content.add_widget(self.duration_input)
-        
-        self.ingredients_input = MDTextField(
-            hint_text="Składniki (jeden na linię)",
+            hint_text=self.lang.get_string("preparation_time"),
             mode="rectangle",
-            multiline=True
+            input_filter='int',
+            max_text_length=3
         )
-        content.add_widget(self.ingredients_input)
+        self.content.add_widget(self.duration_input)
+
+        self.type_field = MDTextField(
+            hint_text=self.lang.get_string("meal_type"),
+            mode="rectangle",
+            on_text_validate=self.validate_type,
+            on_focus=self.validate_type
+        )
+
+        self.content.add_widget(self.type_field)
+
+        self.portions_and_vege_layout = MDBoxLayout(orientation='horizontal', spacing="10dp", size_hint_y=None, height=self.name_input.height + 2*dp(10))
+
+        self.portions_input = MDTextField(
+            hint_text=self.lang.get_string("portions"),
+            mode="rectangle",
+            input_filter='int',
+            max_text_length=1
+        )
+        self.portions_and_vege_layout.add_widget(self.portions_input)
+
+        self.vegetarian_checkbox = MDCheckbox()
+        self.vegetarian_checkbox.active = False
+        self.portions_and_vege_layout.add_widget(MDLabel(text=self.lang.get_string("vegetarianshort"), halign="right", valign="middle"))
+        self.portions_and_vege_layout.add_widget(self.vegetarian_checkbox)
+        self.content.add_widget(self.portions_and_vege_layout)
+
+        self.ingredients_label = MDLabel(
+            text=self.lang.get_string("ingredients"),
+            adaptive_height=True
+        )
+        self.content.add_widget(self.ingredients_label)
+    
+        self.ingredients_container = MDBoxLayout(
+            orientation='vertical',
+            adaptive_height=True,
+            spacing="5dp"
+        )
+        self.content.add_widget(self.ingredients_container)
+        
+        self.add_ingredient_row()
+
+        add_ingredient_button = MDIconButton(
+            icon="plus",
+            on_release=self.add_ingredient_row
+        )
+        self.content.add_widget(add_ingredient_button)
 
         self.instructions_input = MDTextField(
-            hint_text="Instrukcje",
+            hint_text=self.lang.get_string("instructions"),
             mode="rectangle",
             multiline=True
         )
-        content.add_widget(self.instructions_input)
+        self.content.add_widget(self.instructions_input)
 
         self.image_button = MDRaisedButton(
-            text="Wybierz zdjęcie",
+            text=self.lang.get_string("select_image"),
             pos_hint={'center_x': 0.5}
         )
         self.image_button.bind(on_release=self.open_file_manager)
-        content.add_widget(self.image_button)
+        self.content.add_widget(self.image_button)
 
-        self.selected_image_label = MDLabel(
-            text="Brak wybranego zdjęcia",
-            halign="center"
+        self.selected_image_box = MDBoxLayout(
+            orientation='horizontal',
+            height="120dp",
+            padding="10dp",
+            spacing="10dp",
+            size_hint_x=None
         )
-        content.add_widget(self.selected_image_label)
+
+        self.selected_image_box.add_widget(
+            MDLabel(
+                text=self.lang.get_string("no_image_selected"),
+                halign="center"
+            )
+        )
+
+        self.image_scroll = MDScrollView(
+            size_hint_y=None,
+            height="120dp",
+            do_scroll_x=True,
+            do_scroll_y=False
+        )
+
+        self.image_scroll.add_widget(self.selected_image_box)
+        self.content.add_widget(self.image_scroll)
+
+        self.scrollview = MDScrollView()
+        self.scrollview.add_widget(self.content)
+        self.add_widget(self.scrollview)
+
+    def add_ingredient_row(self, *args):
+        """
+        Tworzy nowy wiersz składający się z dwóch pól tekstowych (nazwa, ilość)
+        i dodaje go do kontenera na składniki.
+        """
+        ingredient_row_layout = MDBoxLayout(
+            orientation='horizontal',
+            spacing="10dp",
+            size_hint_y=None,
+            height="48dp"
+        )
+
+        # Pole na nazwę składnika
+        name_field = MDTextField(
+            hint_text=self.lang.get_string("ingredient_name"),
+            mode="line",
+            size_hint_x=0.7 # Zajmuje 70% szerokości
+        )
+
+        # Pole na ilość
+        quantity_field = MDTextField(
+            hint_text=self.lang.get_string("ingredient_quantity"),
+            mode="line",
+            size_hint_x=0.3 # Zajmuje 30% szerokości
+        )
+
+        ingredient_row_layout.add_widget(name_field)
+        ingredient_row_layout.add_widget(quantity_field)
         
-        self.file_manager = MDFileManager(
-            exit_manager=self.exit_manager,
-            select_path=self.select_path
+        self.ingredients_container.add_widget(ingredient_row_layout)
+        
+        self.ingredient_rows.append(
+            {'name': name_field, 'quantity': quantity_field}
         )
 
-        scrollview = MDScrollView()
-        scrollview.add_widget(content)
-        self.add_widget(scrollview)
+    def validate_type(self, instance):
+        """Waliduje wpisany typ posiłku."""
+        valid_types = [self.lang.get_string("Breakfast"), self.lang.get_string("Lunch"), self.lang.get_string("Dinner"), self.lang.get_string("Snack"), self.lang.get_string("Dessert")]
+        input_type = instance.text.strip().lower()
+        if input_type not in {vt.lower() for vt in valid_types}:
+            instance.error = True
+        else:
+            instance.error = False
+            instance.text = next(vt for vt in valid_types if vt.lower() == input_type)
 
     def open_file_manager(self, instance):
         """Otwiera menedżer plików do wyboru zdjęcia."""
-        # self.file_manager.show_current_dir()
-        pass
+        # Show file manager starting at the app's directory
+        self.file_manager.show(self.dir_path)
 
-    def select_path(self, path):
-        """Metoda wywoływana po wybraniu pliku."""
+
+    def select_path(self, path: str):
+        """
+        Metoda wywoływana po wybraniu pliku.
+        Sprawdza, czy ścieżka jest plikiem, aktualizuje obraz i zamyka menedżer.
+        """
+        # 1. Sprawdź, czy wybrana ścieżka jest plikiem, a nie folderem
+        if os.path.isfile(path):
+            self.image_paths.append(path)
+    
+            # 2. Usuń stary widget obrazu, jeśli istnieje
+            if self.selected_image_box.children[0].__class__ == MDLabel:
+                self.selected_image_box.remove_widget(self.selected_image_box.children[0])
+
+            # 3. Stwórz i dodaj nowy widget FitImage z wybranym obrazem
+            # Tę logikę przenieśliśmy tutaj z exit_manager
+            self.selected_image_box.add_widget(
+                FitImage(
+                    source=path,
+                    size_hint_x=None,
+                    width="120dp"
+                )
+            )
+
+        # 4. Niezależnie od wyniku, zamknij menedżer plików
         self.exit_manager()
-        self.image_path = path
-        self.selected_image_label.text = f"Wybrano: {self.image_path}"
-        print(f"Wybrano plik: {self.image_path}")
 
     def exit_manager(self, *args):
-        """Zamyka menedżer plików."""
         self.file_manager.close()
 
 
@@ -302,19 +427,50 @@ class FreeViewScreen(MDScreen):
         self.populate_list(self.all_recipes)
 
     def add_new_recipe(self, *args):
-        dialog = MDDialog(
+        self.dialog = MDDialog(
             title=self.lang.get_string("add_recipe"),
             type="custom",
             content_cls=AddRecipeDialogContent(self.lang),
             buttons=[
-                MDFlatButton(text=self.lang.get_string("cancel"), on_release=lambda x: dialog.dismiss()),
+                MDFlatButton(text=self.lang.get_string("cancel"), on_release=lambda x: self.dialog.dismiss()),
                 MDRaisedButton(text=self.lang.get_string("add_recipe"), on_release=self.add_recipe)
             ]
         )
-        dialog.open()
+        self.dialog.open()
 
     def add_recipe(self, *args):
-        pass
+        recipe = Recipe(
+            id_=1000 + len(self.all_recipes),
+            dur=f"{self.dialog.content_cls.duration_input.text} min" if self.dialog.content_cls.duration_input.text else "0 min",
+            name=self.dialog.content_cls.name_input.text or self.lang.get_string("unnamed_recipe"),
+            portions=int(self.dialog.content_cls.portions_input.text) if self.dialog.content_cls.portions_input.text.isdigit() else 1,
+            mealtype=self.dialog.content_cls.type_field.text or self.lang.get_string("unknown"),
+            vegetarian=self.dialog.content_cls.vegetarian_checkbox.active,
+            instructions=self.dialog.content_cls.instructions_input.text or self.lang.get_string("no_instructions"),
+        )
+
+        for row in self.dialog.content_cls.ingredient_rows:
+            product = Product(
+                name=row['name'] or self.lang.get_string("unnamed_product"),
+                quantity=row['quantity'] or "1",
+            )
+            recipe.add_product(product)
+
+        for i, image in enumerate(self.dialog.content_cls.image_paths):
+            image_dir = f"imgs/recipe{recipe.id}/"
+            os.makedirs(image_dir, exist_ok=True)
+            dest_path = os.path.join(image_dir, f"{i}.png")
+            try:
+                with open(image, 'rb') as src_file:
+                    with open(dest_path, 'wb') as dest_file:
+                        dest_file.write(src_file.read())
+            except Exception as e:
+                print(f"Error copying image: {e}")
+
+        append_recipe_to_xml("recipes.xml", recipe, language=self.lang.current_language)
+        self.all_recipes.append(recipe)
+        self.populate_list(self.all_recipes)
+        self.dialog.dismiss()
 
     def edit_the_recipe(self, recipe):
         dialog = MDDialog(
@@ -511,8 +667,10 @@ class FreeViewScreen(MDScreen):
             image_path = f"imgs/recipe{recipe.id}/0.png"      
             image_widget = ImageLeftWidget(source=image_path)
 
-            main_ingredients = f"{list(recipe.ingredients.keys())[0]}, {list(recipe.ingredients.keys())[1]}, {list(recipe.ingredients.keys())[2]}..." if len(recipe.ingredients) > 3 else ", ".join(list(recipe.ingredients.keys()))
-
+            try:
+                main_ingredients = f"{list(recipe.ingredients.keys())[0]}, {list(recipe.ingredients.keys())[1]}, {list(recipe.ingredients.keys())[2]}..." if len(recipe.ingredients) > 3 else ", ".join(list(recipe.ingredients.keys()))
+            except Exception as e:
+                main_ingredients = self.lang.get_string("no_ingredients")
             list_item = TwoLineAvatarIconListItem(
                 text=f"{recipe.name}",
                 secondary_text=f"{main_ingredients}",

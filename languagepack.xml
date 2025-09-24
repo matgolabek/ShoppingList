@@ -56,6 +56,19 @@ TheCart Team</string>
         <string id="wrong_email_settings">Please check your email settings.</string>
         <string id="add_recipe">Add Recipe</string>
         <string id="edit_recipe">Edit Recipe</string>
+        <string id="recipe_name">Recipe Name</string>
+        <string id="duration_min">Preparation Time (min)</string>
+        <string id="vegetarianshort">Veg...?</string>
+        <string id="meal_type_helper">Breakfast, Lunch, Dinner, Supper, Dessert, Snack</string>
+        <string id="ingredient_name">Ingredient Name</string>
+        <string id="ingredient_quantity">Quantity</string>
+        <string id="add_ingredient">Add Ingredient</string>
+        <string id="no_image_selected">No image selected</string>
+        <string id="select_image">Import Image </string>
+        <string id="reset_database_title">Reset Database</string>
+        <string id="reset_database_confirm">Are you sure you want to reset the database? You will lose all added recipes. Application restart may be required.</string>
+        <string id="reset">Reset</string>
+        <string id="no_ingredients">No ingredients</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -113,5 +126,18 @@ Zespół TheCart</string>
         <string id="wrong_email_settings">Proszę sprawdzić ustawienia e-mail.</string>
         <string id="add_recipe">Dodaj przepis</string>
         <string id="edit_recipe">Edytuj przepis</string>
+        <string id="recipe_name">Nazwa przepisu</string>
+        <string id="duration_min">Czas przygotowania (min)</string>
+        <string id="vegetarianshort">Wege...?</string>
+        <string id="meal_type_helper">Śniadanie, Lunch, Obiad, Kolacja, Deser, Przekąska</string>
+        <string id="ingredient_name">Nazwa składnika</string>
+        <string id="ingredient_quantity">Ilość</string>
+        <string id="add_ingredient">Dodaj składnik</string>
+        <string id="no_image_selected">Brak wybranego zdjęcia</string>
+        <string id="select_image">Importuj zdjęcie</string>
+        <string id="reset_database_title">Resetuj bazę danych</string>
+        <string id="reset_database_confirm">Czy na pewno chcesz zresetować bazę danych? Utracisz wszystkie dodane przepisy. Może być wymagane ponowne uruchomienie aplikacji.</string>
+        <string id="reset">Resetuj</string>
+        <string id="no_ingredients">Brak składników</string>
     </language>
 </languagepack>
