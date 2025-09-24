@@ -55,7 +55,8 @@ TheCart Team</string>
         <string id="ok">OK</string>
         <string id="wrong_email_settings">Please check your email settings.</string>
         <string id="add_recipe">Add Recipe</string>
-        <string id="edit_recipe">Edit Recipe</string>
+        <string id="edit_recipe">Edit</string>
+        <string id="delete_recipe">Delete</string>
         <string id="recipe_name">Recipe Name</string>
         <string id="duration_min">Preparation Time (min)</string>
         <string id="vegetarianshort">Veg...?</string>
@@ -73,6 +74,9 @@ TheCart Team</string>
         <string id="unknown">Unknown</string>
         <string id="unnamed_recipe">Unnamed Recipe</string>
         <string id="unnamed_product">Unnamed Product</string>
+        <string id="save">Save</string>
+        <string id="remove_images">Remove Images</string>
+        <string id="remove">Remove</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -129,7 +133,8 @@ Zespół TheCart</string>
         <string id="ok">OK</string>
         <string id="wrong_email_settings">Proszę sprawdzić ustawienia e-mail.</string>
         <string id="add_recipe">Dodaj przepis</string>
-        <string id="edit_recipe">Edytuj przepis</string>
+        <string id="edit_recipe">Edytuj</string>
+        <string id="delete_recipe">Usuń</string>
         <string id="recipe_name">Nazwa przepisu</string>
         <string id="duration_min">Czas przygotowania (min)</string>
         <string id="vegetarianshort">Wege...?</string>
@@ -147,5 +152,8 @@ Zespół TheCart</string>
         <string id="unknown">Nieznany</string>
         <string id="unnamed_recipe">Bez nazwy</string>
         <string id="unnamed_product">Bez nazwy</string>
+        <string id="save">Zapisz</string>
+        <string id="remove_images">Usuń zdjęcia</string>
+        <string id="remove">Usuń</string>
     </language>
 </languagepack>
