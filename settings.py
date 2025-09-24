@@ -1,33 +1,17 @@
 from kivymd.app import MDApp
-from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.button import MDRaisedButton
-from kivymd.uix.button import MDIconButton
-from kivymd.uix.tooltip import MDTooltip
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
-from kivymd.uix.selectioncontrol import MDCheckbox
-from kivymd.uix.stacklayout import MDStackLayout
-from kivymd.uix.tab import MDTabsBase
-from kivymd.uix.toolbar import MDTopAppBar
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.tab import MDTabs
-from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivymd.uix.scrollview import MDScrollView
-from kivymd.uix.list import MDList, TwoLineAvatarIconListItem, OneLineAvatarIconListItem, IRightBodyTouch, TwoLineListItem, ImageLeftWidget, OneLineListItem
-from kivymd.uix.menu import MDDropdownMenu
+from kivymd.uix.list import MDList, OneLineAvatarIconListItem, TwoLineListItem, OneLineListItem
 from kivy.metrics import dp
-from kivy.clock import Clock
 from kivy.core.window import Window
-from kivy.utils import get_hex_from_color
-from kivymd.uix.fitimage import FitImage
 
 import os
-import numpy as np
-from info import Info
-from recipe import Recipe
 import shutil
 
 
@@ -36,7 +20,6 @@ class SettingsScreen(MDScreen):
         super().__init__(*args, **kwargs)
         self.info = info
         self.lang = info.language
-        self.lang.register_observer(self)
 
         self.dialog = None
         self.email_dialog = None
@@ -109,8 +92,8 @@ class SettingsScreen(MDScreen):
             )
             item.ids._left_container.padding = (dp(30), 0, 0, 0)
             self.sending_option_widgets.append(item)
-
-        self.settings_list.add_widget(OneLineListItem(text=self.lang.get_string("reset_database_title"), on_release=self.reset_the_database))
+        self.reset_option = OneLineListItem(text=self.lang.get_string("reset_database_title"), on_release=self.reset_the_database)
+        self.settings_list.add_widget(self.reset_option)
             
         self.scrollview.add_widget(self.settings_list)
         self.layout.add_widget(self.scrollview)
@@ -151,7 +134,7 @@ class SettingsScreen(MDScreen):
                         shutil.rmtree(os.path.join("imgs", folder))
                 except ValueError:
                     continue
-                
+
         all_recipes = self.info.get_recipes()
         MDApp.get_running_app().scs.populate_list(all_recipes)
         MDApp.get_running_app().fvi.populate_list(all_recipes)
@@ -262,6 +245,12 @@ class SettingsScreen(MDScreen):
         self.language_button.secondary_text = self.lang.get_string(self.languages_map[self.lang.current_language])
 
         self.email_button.text = self.lang.get_string("email")
+        if self.email_dialog is not None:
+            self.email_dialog.title = self.lang.get_string("provide_email")
+            self.email_field.hint_text = self.lang.get_string("email")
+            self.email_dialog.buttons[0].text = self.lang.get_string("cancel")
+            self.email_dialog.buttons[1].text = self.lang.get_string("apply")
+
 
         self.sending_button.text = self.lang.get_string("sending_option")
         self.sending_button.secondary_text = self.lang.get_string(self.info.send_option)
@@ -274,6 +263,8 @@ class SettingsScreen(MDScreen):
 
         for widget in self.sending_option_widgets:
             widget.text = self.lang.get_string(widget.id)
+
+        self.reset_option.text = self.lang.get_string("reset_database_title")
 
     def provide_email_info(self, *args):
         """

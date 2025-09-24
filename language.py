@@ -37,17 +37,6 @@ class Language:
         else:
             print(f"Warning: Language '{language}' not found.")
 
-    def register_observer(self, observer):
-        """
-        Registers a new UI element for notifications.
-        """
-        self.observers.append(observer)
-
-    def unregister_observer(self, observer):
-        """Unregisters a UI element."""
-        self.observers.remove(observer)
-
-
     def get_string(self, string_id):
         """
         Retrieves the translated string for the current language.

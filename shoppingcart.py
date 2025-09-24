@@ -1,24 +1,16 @@
 from kivymd.app import MDApp
-from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.button import MDIconButton
-from kivymd.uix.tooltip import MDTooltip
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.selectioncontrol import MDCheckbox
-from kivymd.uix.stacklayout import MDStackLayout
-from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.toolbar import MDTopAppBar
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.relativelayout import MDRelativeLayout
-from kivymd.uix.tab import MDTabs
-from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivymd.uix.scrollview import MDScrollView
-from kivymd.uix.list import MDList, TwoLineAvatarIconListItem, OneLineAvatarIconListItem, IRightBodyTouch, TwoLineListItem, ImageLeftWidget
-from kivymd.uix.menu import MDDropdownMenu
+from kivymd.uix.list import MDList, TwoLineAvatarIconListItem, IRightBodyTouch, ImageLeftWidget
 from kivy.metrics import dp
 from kivy.clock import Clock
 from kivy.core.window import Window
@@ -31,8 +23,6 @@ import ssl
 from email.message import EmailMessage
 import json
 import os
-import numpy as np
-from info import Info
 from recipe import Recipe
 from datetime import date
 
@@ -262,7 +252,6 @@ class ShoppingCartScreen(MDScreen):
         self.dialog = None
         self.info = info
         self.lang = info.language
-        self.lang.register_observer(self)
 
         self.recipes = info.get_recipes()
         self.all_recipes = info.get_recipes()

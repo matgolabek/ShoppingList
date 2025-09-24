@@ -77,6 +77,9 @@ TheCart Team</string>
         <string id="save">Save</string>
         <string id="remove_images">Remove Images</string>
         <string id="remove">Remove</string>
+        <string id="confirm_delete">Confirm Deletion</string>
+        <string id="delete_recipe_confirm">Are you sure you want to delete this recipe?</string>
+        <string id="delete_success">Deleted</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -155,5 +158,8 @@ Zespół TheCart</string>
         <string id="save">Zapisz</string>
         <string id="remove_images">Usuń zdjęcia</string>
         <string id="remove">Usuń</string>
+        <string id="confirm_delete">Potwierdź usunięcie</string>
+        <string id="delete_recipe_confirm">Czy na pewno chcesz usunąć ten przepis?</string>
+        <string id="delete_success">Usunięto</string>
     </language>
 </languagepack>

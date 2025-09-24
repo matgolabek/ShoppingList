@@ -17,9 +17,10 @@ class MyApp(MDApp):
     def build(self):
         self.title = "TheCart"
         self.theme_cls.primary_palette = "Cyan"
+        self.theme_cls.primary_hue = "900"
         self.theme_cls.theme_style = "Light"
         Window.size = (315, 700)
-        Window.set_icon("cart.jpg")
+        Window.set_icon("cart.png")
 
         self.save_file = "info.dat"
 

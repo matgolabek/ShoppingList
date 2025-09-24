@@ -1,23 +1,16 @@
 from kivymd.app import MDApp
-from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.button import MDIconButton, MDRaisedButton
-from kivymd.uix.tooltip import MDTooltip
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.selectioncontrol import MDCheckbox
-from kivymd.uix.stacklayout import MDStackLayout
-from kivymd.uix.tab import MDTabsBase
 from kivymd.uix.toolbar import MDTopAppBar
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.tab import MDTabs
-from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivymd.uix.scrollview import MDScrollView
-from kivymd.uix.list import MDList, TwoLineAvatarIconListItem, OneLineAvatarIconListItem, IRightBodyTouch, TwoLineListItem, ImageLeftWidget
-from kivymd.uix.menu import MDDropdownMenu
+from kivymd.uix.list import MDList, TwoLineAvatarIconListItem, ImageLeftWidget
 from kivymd.uix.filemanager import MDFileManager
 from kivy.properties import ObjectProperty
 from kivy.metrics import dp
@@ -27,12 +20,9 @@ from kivy.utils import get_hex_from_color
 from kivymd.uix.fitimage import FitImage
 
 import os
-import numpy as np
-from info import Info
 from recipe import Recipe
 from product import Product
 from recipes import append_recipe_to_xml, update_recipe_in_xml, delete_recipe_from_xml
-from kivymd.uix.list import OneLineAvatarIconListItem
 
 class FilterDialogContent(MDBoxLayout):
     """
@@ -49,7 +39,6 @@ class FilterDialogContent(MDBoxLayout):
             orientation="vertical", spacing="15dp", padding="15dp", adaptive_height=True
         )
 
-            # --- SECTION 1: CHECKBOXES FOR MEAL TYPE ---
         content_layout.add_widget(MDLabel(text=self.lang.get_string("meal_type"), bold=True, adaptive_height=True))
         self.meal_type_checkboxes = {}
         meal_types = sorted(list(set([r.mealtype for r in all_recipes])))
@@ -61,7 +50,6 @@ class FilterDialogContent(MDBoxLayout):
             item_layout.add_widget(MDLabel(text=self.lang.get_string(meal_type), adaptive_height=True))
             content_layout.add_widget(item_layout)
 
-        # --- SECTION 2: CHECKBOXES FOR TIME RANGES ---
         content_layout.add_widget(MDLabel(text=self.lang.get_string("preparation_time"), bold=True, adaptive_height=True))
 
         # Define our time ranges
@@ -69,7 +57,7 @@ class FilterDialogContent(MDBoxLayout):
             "0-15 min": (0, 15),
             "15-30 min": (15, 30),
             "30-60 min": (30, 60),
-            "60+ min": (60, 9999) # We use a large number as "infinity"
+            "60+ min": (60, 9999)
         }
         self.time_range_checkboxes = {}
 
@@ -352,8 +340,8 @@ class EditRecipeDialogContent(MDBoxLayout):
 
     def add_ingredient_row(self, *args):
         """
-        Tworzy nowy wiersz składający się z dwóch pól tekstowych (nazwa, ilość)
-        i dodaje go do kontenera na składniki.
+        Creates a new row consisting of two text fields (name, quantity)
+        and adds it to the ingredients container.
         """
         ingredient_row_layout = MDBoxLayout(
             orientation='horizontal',
@@ -362,18 +350,16 @@ class EditRecipeDialogContent(MDBoxLayout):
             height="48dp"
         )
 
-        # Pole na nazwę składnika
         name_field = MDTextField(
             hint_text=self.lang.get_string("ingredient_name"),
             mode="line",
-            size_hint_x=0.7 # Zajmuje 70% szerokości
+            size_hint_x=0.7
         )
 
-        # Pole na ilość
         quantity_field = MDTextField(
             hint_text=self.lang.get_string("ingredient_quantity"),
             mode="line",
-            size_hint_x=0.3 # Zajmuje 30% szerokości
+            size_hint_x=0.3
         )
 
         ingredient_row_layout.add_widget(name_field)
@@ -386,7 +372,9 @@ class EditRecipeDialogContent(MDBoxLayout):
         )
 
     def validate_type(self, instance):
-        """Waliduje wpisany typ posiłku."""
+        """
+        Validates the meal type input against predefined types.
+        """
         valid_types = [self.lang.get_string("Breakfast"), self.lang.get_string("Lunch"), self.lang.get_string("Dinner"), self.lang.get_string("Snack"), self.lang.get_string("Dessert"), self.lang.get_string("Supper")]
         input_type = instance.text.strip().lower()
         if input_type not in {vt.lower() for vt in valid_types}:
@@ -396,7 +384,9 @@ class EditRecipeDialogContent(MDBoxLayout):
             instance.text = next(vt for vt in valid_types if vt.lower() == input_type)
 
     def open_file_manager(self, instance):
-        """Otwiera menedżer plików do wyboru zdjęcia."""
+        """
+        Opens the file manager to select an image.
+        """
         self.file_manager.show(self.dir_path)
 
     
@@ -448,8 +438,7 @@ class EditRecipeDialogContent(MDBoxLayout):
 
     def select_path(self, path: str):
         """
-        Metoda wywoływana po wybraniu pliku.
-        Sprawdza, czy ścieżka jest plikiem, aktualizuje obraz i zamyka menedżer.
+        Checks if the path is a file, updates the image, and closes the manager.
         """
         if os.path.isfile(path):
             self.image_paths.append(path)
@@ -469,7 +458,7 @@ class EditRecipeDialogContent(MDBoxLayout):
 
 class AddRecipeDialogContent(MDBoxLayout):
     """
-    Klasa tworząca zawartość okna dialogowego do dodawania przepisów.
+    Class creating the content of the dialog window for adding recipes.
     """
     portions_input = ObjectProperty(None)
     duration_input = ObjectProperty(None)
@@ -523,7 +512,7 @@ class AddRecipeDialogContent(MDBoxLayout):
             hint_text=self.lang.get_string("portions"),
             mode="rectangle",
             input_filter='int',
-            max_text_length=1
+            max_text_length=1, size_hint_x=None, width="100dp"
         )
         self.portions_and_vege_layout.add_widget(self.portions_input)
 
@@ -599,8 +588,8 @@ class AddRecipeDialogContent(MDBoxLayout):
 
     def add_ingredient_row(self, *args):
         """
-        Tworzy nowy wiersz składający się z dwóch pól tekstowych (nazwa, ilość)
-        i dodaje go do kontenera na składniki.
+        Creates a new row consisting of two text fields (name, quantity)
+        and adds it to the ingredients container.
         """
         ingredient_row_layout = MDBoxLayout(
             orientation='horizontal',
@@ -633,7 +622,9 @@ class AddRecipeDialogContent(MDBoxLayout):
         )
 
     def validate_type(self, instance):
-        """Waliduje wpisany typ posiłku."""
+        """
+        Validates the meal type input.
+        """
         valid_types = [self.lang.get_string("Breakfast"), self.lang.get_string("Lunch"), self.lang.get_string("Dinner"), self.lang.get_string("Snack"), self.lang.get_string("Dessert"), self.lang.get_string("Supper")]
         input_type = instance.text.strip().lower()
         if input_type not in {vt.lower() for vt in valid_types}:
@@ -643,15 +634,17 @@ class AddRecipeDialogContent(MDBoxLayout):
             instance.text = next(vt for vt in valid_types if vt.lower() == input_type)
 
     def open_file_manager(self, instance):
-        """Otwiera menedżer plików do wyboru zdjęcia."""
+        """
+        Opens the file manager to select an image.
+        """
         # Show file manager starting at the app's directory
         self.file_manager.show(self.dir_path)
 
 
     def select_path(self, path: str):
         """
-        Metoda wywoływana po wybraniu pliku.
-        Sprawdza, czy ścieżka jest plikiem, aktualizuje obraz i zamyka menedżer.
+        Method called after a file is selected.
+        Checks if the path is a file, updates the image, and closes the manager.
         """
         if os.path.isfile(path):
             self.image_paths.append(path)
@@ -667,7 +660,6 @@ class AddRecipeDialogContent(MDBoxLayout):
                 )
             )
 
-        # 4. Niezależnie od wyniku, zamknij menedżer plików
         self.exit_manager()
 
     def exit_manager(self, *args):
@@ -681,7 +673,6 @@ class FreeViewScreen(MDScreen):
         self.dialog = None
         self.info = info
         self.lang = info.language
-        self.lang.register_observer(self)
 
         self.recipes = info.get_recipes()
         self.all_recipes = info.get_recipes()
@@ -776,8 +767,27 @@ class FreeViewScreen(MDScreen):
         self.dialog.open()
 
     def delete_the_recipe(self, recipe):
+        dialog = MDDialog(
+            title=self.lang.get_string("confirm_delete"),
+            text=self.lang.get_string("delete_recipe_confirm"),
+            buttons=[
+                MDFlatButton(
+                    text=self.lang.get_string("cancel"),
+                    on_release=lambda x: dialog.dismiss()
+                ),
+                MDRaisedButton(
+                    text=self.lang.get_string("delete_recipe"),
+                    md_bg_color=self.theme_cls.primary_color,
+                    on_release=lambda x: self.confirm_delete_recipe(recipe, dialog)
+                ),
+            ],
+        )
+        dialog.open()
+
+    def confirm_delete_recipe(self, recipe, dialog):
+        dialog.dismiss()
         delete_recipe_from_xml("recipes.xml", recipe)
-        self.all_recipes.remove(recipe)
+        self.all_recipes = self.info.get_recipes()
         self.populate_list(self.all_recipes)
         MDApp.get_running_app().scs.populate_list(self.all_recipes)
         self.dialog.dismiss()
