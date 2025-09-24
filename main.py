@@ -33,10 +33,12 @@ class MyApp(MDApp):
             self.info = Info()
 
         shopping_cart_item = MDBottomNavigationItem(name="Shopping Cart", icon="cart-outline")
-        shopping_cart_item.add_widget(ShoppingCartScreen(info=self.info, name="Shoping Cart"))
+        self.scs = ShoppingCartScreen(info=self.info, name="Shopping Cart")
+        shopping_cart_item.add_widget(self.scs)
 
         free_view_item = MDBottomNavigationItem(name="Free View", icon="magnify")
-        free_view_item.add_widget(FreeViewScreen(info=self.info, name="Free View"))
+        self.fvi = FreeViewScreen(info=self.info, name="Free View")
+        free_view_item.add_widget(self.fvi)
 
         settings_item = MDBottomNavigationItem(name="Settings", icon="cog-outline")
         settings_item.add_widget(SettingsScreen(info=self.info, name="Settings"))

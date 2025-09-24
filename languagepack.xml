@@ -66,9 +66,13 @@ TheCart Team</string>
         <string id="no_image_selected">No image selected</string>
         <string id="select_image">Import Image </string>
         <string id="reset_database_title">Reset Database</string>
-        <string id="reset_database_confirm">Are you sure you want to reset the database? You will lose all added recipes. Application restart may be required.</string>
+        <string id="reset_database_confirm">Are you sure you want to reset the database? You will lose all added and edited recipes.</string>
         <string id="reset">Reset</string>
         <string id="no_ingredients">No ingredients</string>
+        <string id="no_instructions">No instructions</string>
+        <string id="unknown">Unknown</string>
+        <string id="unnamed_recipe">Unnamed Recipe</string>
+        <string id="unnamed_product">Unnamed Product</string>
     </language>
     <language name="pl">
         <string id="proceed">Kontynuuj</string>
@@ -136,8 +140,12 @@ Zespół TheCart</string>
         <string id="no_image_selected">Brak wybranego zdjęcia</string>
         <string id="select_image">Importuj zdjęcie</string>
         <string id="reset_database_title">Resetuj bazę danych</string>
-        <string id="reset_database_confirm">Czy na pewno chcesz zresetować bazę danych? Utracisz wszystkie dodane przepisy. Może być wymagane ponowne uruchomienie aplikacji.</string>
+        <string id="reset_database_confirm">Czy na pewno chcesz zresetować bazę danych? Utracisz wszystkie dodane i edytowane przepisy.</string>
         <string id="reset">Resetuj</string>
         <string id="no_ingredients">Brak składników</string>
+        <string id="no_instructions">Brak instrukcji</string>
+        <string id="unknown">Nieznany</string>
+        <string id="unnamed_recipe">Bez nazwy</string>
+        <string id="unnamed_product">Bez nazwy</string>
     </language>
 </languagepack>

@@ -13,10 +13,11 @@ class Recipe:
         self.vegetarian = vegetarian
         self.instructions = instructions
         self.duration = dur
-        self.duration_int = self.convert_duration_to_int(dur)
+        self.duration_int = Recipe.convert_duration_to_int(dur)
         self.ingredients: dict[str, str] = {}
 
-    def convert_duration_to_int(self, dur):
+    @staticmethod
+    def convert_duration_to_int(dur):
         """
         Converts duration string to integer (in minutes).
         """
@@ -34,6 +35,19 @@ class Recipe:
             return total_minutes
         except ValueError:
             return 0
+
+    @staticmethod
+    def convert_int_to_duration(total_minutes: str) -> str:
+        """
+        Converts integer (in minutes) to duration string.
+        """
+        total_minutes = int(total_minutes)
+        hours = total_minutes // 60
+        minutes = total_minutes % 60
+        if hours > 0:
+            return f"{hours}h {minutes}min" if minutes > 0 else f"{hours}h"
+        else:
+            return f"{minutes}min"
 
     def add_product(self, product: Product) -> None:
         """

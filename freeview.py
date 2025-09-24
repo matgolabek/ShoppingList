@@ -103,7 +103,7 @@ class FilterDialogContent(MDBoxLayout):
 
 
 
-class DialogContent(MDBoxLayout):
+class RecipeDialogContent(MDBoxLayout):
     """
     Updated custom dialog content with image gallery, working markdown, and responsive height.
     """
@@ -152,8 +152,6 @@ class DialogContent(MDBoxLayout):
             gallery_scroll.add_widget(gallery_layout)
             self.add_widget(gallery_scroll)
 
-        # --- SECTION 2: VERTICAL RECIPE DETAILS (SCROLLABLE) ---
-        # This ScrollView will take up the remaining available space
         details_scroll = MDScrollView()
         content = MDBoxLayout(orientation='vertical', adaptive_height=True, padding="15dp", spacing="10dp")
 
@@ -202,7 +200,6 @@ class AddRecipeDialogContent(MDBoxLayout):
         self.content = MDBoxLayout(orientation='vertical', spacing="10dp", adaptive_height=True)
         self.name_input = MDTextField(
             hint_text=self.lang.get_string("recipe_name"),
-            required=True,
             mode="rectangle"
         )
         self.content.add_widget(self.name_input)
@@ -341,7 +338,7 @@ class AddRecipeDialogContent(MDBoxLayout):
 
     def validate_type(self, instance):
         """Waliduje wpisany typ posiłku."""
-        valid_types = [self.lang.get_string("Breakfast"), self.lang.get_string("Lunch"), self.lang.get_string("Dinner"), self.lang.get_string("Snack"), self.lang.get_string("Dessert")]
+        valid_types = [self.lang.get_string("Breakfast"), self.lang.get_string("Lunch"), self.lang.get_string("Dinner"), self.lang.get_string("Snack"), self.lang.get_string("Dessert"), self.lang.get_string("Supper")]
         input_type = instance.text.strip().lower()
         if input_type not in {vt.lower() for vt in valid_types}:
             instance.error = True
@@ -360,16 +357,12 @@ class AddRecipeDialogContent(MDBoxLayout):
         Metoda wywoływana po wybraniu pliku.
         Sprawdza, czy ścieżka jest plikiem, aktualizuje obraz i zamyka menedżer.
         """
-        # 1. Sprawdź, czy wybrana ścieżka jest plikiem, a nie folderem
         if os.path.isfile(path):
             self.image_paths.append(path)
     
-            # 2. Usuń stary widget obrazu, jeśli istnieje
             if self.selected_image_box.children[0].__class__ == MDLabel:
                 self.selected_image_box.remove_widget(self.selected_image_box.children[0])
 
-            # 3. Stwórz i dodaj nowy widget FitImage z wybranym obrazem
-            # Tę logikę przenieśliśmy tutaj z exit_manager
             self.selected_image_box.add_widget(
                 FitImage(
                     source=path,
@@ -441,8 +434,8 @@ class FreeViewScreen(MDScreen):
     def add_recipe(self, *args):
         recipe = Recipe(
             id_=1000 + len(self.all_recipes),
-            dur=f"{self.dialog.content_cls.duration_input.text} min" if self.dialog.content_cls.duration_input.text else "0 min",
-            name=self.dialog.content_cls.name_input.text or self.lang.get_string("unnamed_recipe"),
+            dur=f"{Recipe.convert_int_to_duration(self.dialog.content_cls.duration_input.text)}" if self.dialog.content_cls.duration_input.text else "0 min",
+            name=self.dialog.content_cls.name_input.text.capitalize() or self.lang.get_string("unnamed_recipe"),
             portions=int(self.dialog.content_cls.portions_input.text) if self.dialog.content_cls.portions_input.text.isdigit() else 1,
             mealtype=self.dialog.content_cls.type_field.text or self.lang.get_string("unknown"),
             vegetarian=self.dialog.content_cls.vegetarian_checkbox.active,
@@ -451,8 +444,8 @@ class FreeViewScreen(MDScreen):
 
         for row in self.dialog.content_cls.ingredient_rows:
             product = Product(
-                name=row['name'] or self.lang.get_string("unnamed_product"),
-                quantity=row['quantity'] or "1",
+                name=row['name'].text.capitalize() or self.lang.get_string("unnamed_product"),
+                quantity=row['quantity'].text or "1",
             )
             recipe.add_product(product)
 
@@ -465,11 +458,12 @@ class FreeViewScreen(MDScreen):
                     with open(dest_path, 'wb') as dest_file:
                         dest_file.write(src_file.read())
             except Exception as e:
-                print(f"Error copying image: {e}")
+                continue
 
         append_recipe_to_xml("recipes.xml", recipe, language=self.lang.current_language)
         self.all_recipes.append(recipe)
         self.populate_list(self.all_recipes)
+        MDApp.get_running_app().scs.populate_list(self.all_recipes)
         self.dialog.dismiss()
 
     def edit_the_recipe(self, recipe):
@@ -630,12 +624,11 @@ class FreeViewScreen(MDScreen):
         """
         Creates and shows a popup with the recipe details.
         """
-        checkbox = self.checkboxes.get(recipe.id)
-        button_text = self.lang.get_string("edit_recipe") if checkbox and not checkbox.active else self.lang.get_string("remove_from_list")
+        button_text = self.lang.get_string("edit_recipe")
         self.dialog = MDDialog(
             title=recipe.name,
             type="custom",
-            content_cls=DialogContent(recipe=recipe, lang=self.lang),
+            content_cls=RecipeDialogContent(recipe=recipe, lang=self.lang),
             buttons=[
                 MDRaisedButton(
                     text=button_text,
@@ -651,7 +644,7 @@ class FreeViewScreen(MDScreen):
             ],
         )
         self.dialog.title = recipe.name
-        self.dialog.content_cls = DialogContent(recipe=recipe, lang=self.lang)
+        self.dialog.content_cls = RecipeDialogContent(recipe=recipe, lang=self.lang)
         self.dialog.open()
 
     def populate_list(self, recipes_to_display: list[Recipe] = None):

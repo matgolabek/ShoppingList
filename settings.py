@@ -151,6 +151,10 @@ class SettingsScreen(MDScreen):
                         shutil.rmtree(os.path.join("imgs", folder))
                 except ValueError:
                     continue
+                
+        all_recipes = self.info.get_recipes()
+        MDApp.get_running_app().scs.populate_list(all_recipes)
+        MDApp.get_running_app().fvi.populate_list(all_recipes)
         self.dialog.dismiss()
         self.dialog = None
 
