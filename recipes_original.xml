@@ -1,57 +1,333 @@
-<?ml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <recipes>
     <recipe>
-        <name>Spaghetti</name>
-        <id>0</id>
-        <duration>1 h</duration>
+        <name lang="en">Chinese vegetables with meat</name>
+        <name lang="pl">Warzywa chińskie z mięsem</name>
+        <id>1</id>
+        <duration>30 min</duration>
         <vegetarian>false</vegetarian>
         <type lang="en">Dinner</type>
         <type lang="pl">Obiad</type>
         <portions>2</portions>
         <ingredients>
             <ingredient>
-                <name lang="en">Pasta</name>
-                <name lang="pl">Makaron</name>
-                <quantity>400 g</quantity>
+                <name lang="en">Frozen Chinese vegetables</name>
+                <name lang="pl">Mrożone warzywa chińskie</name>
+                <quantity lang="en">1 pack</quantity>
+                <quantity lang="pl">1 opakowanie</quantity>
             </ingredient>
             <ingredient>
-                <name lang="en">Minced pork</name>
+                <name lang="en">Meat (any)</name>
+                <name lang="pl">Mięso (dowolne)</name>
+                <quantity>300 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Rice noodles</name>
+                <name lang="pl">Makaron ryżowy</name>
+                <quantity>200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Soy sauce</name>
+                <name lang="pl">Sos sojowy</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Marinate meat in soy sauce. Fry in a pan. Add Chinese vegetables. Season with Chinese spices. Serve mixed with cooked noodles.</instructions>
+        <instructions lang="pl">Mięso zamarynować w sosie sojowym. Przysmażyć na patelni. Następnie na patelnię dodać warzywa chińskie. Przyprawić przyprawą do kuchni chińskiej. Podawać wymieszane z ugotowanym makaronem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Chili con carne</name>
+        <name lang="pl">Chili con carne</name>
+        <id>2</id>
+        <duration>45 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>4</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Minced meat</name>
                 <name lang="pl">Mięso mielone</name>
-                <quantity lang="en">400 g</quantity>
-                <quantity lang="pl">400 g</quantity>
+                <quantity>500 g</quantity>
             </ingredient>
             <ingredient>
-                <name lang="en">Passata</name>
-                <name lang="pl">Passata</name>
-                <quantity>700 ml</quantity>
+                <name lang="en">Red beans</name>
+                <name lang="pl">Czerwona fasola</name>
+                <quantity>200 g</quantity>
             </ingredient>
             <ingredient>
+                <name lang="en">Corn</name>
+                <name lang="pl">Kukurydza</name>
+                <quantity>200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Tomatoes</name>
+                <name lang="pl">Pomidory</name>
+                <quantity lang="en">2 pcs</quantity>
+                <quantity lang="pl">2 szt</quantity>
+            </ingredient>
+             <ingredient>
                 <name lang="en">Onion</name>
                 <name lang="pl">Cebula</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Red pepper</name>
+                <name lang="pl">Czerwona papryka</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Broth</name>
+                <name lang="pl">Bulion</name>
+                <quantity>100 ml</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Sauté onion, garlic, chili, oregano. Add meat and fry. Add tomatoes, simmer 20 min. Add pepper, cook 10 min. Add beans and corn, cook 3 min. Add broth.</instructions>
+        <instructions lang="pl">Cebulę zeszklić, dodać czosnek, chili, oregano. Smażyć z mięsem. Dodać pomidory, dusić 20 min. Dodać paprykę, gotować 10 min. Dodać fasolę i kukurydzę, gotować 3 min. Dodać bulion.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Chicken curry with rice</name>
+        <name lang="pl">Kurczak curry z ryżem</name>
+        <id>3</id>
+        <duration>40 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>3</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Chicken breast</name>
+                <name lang="pl">Pierś z kurczaka</name>
+                <quantity>650 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Red pepper</name>
+                <name lang="pl">Czerwona papryka</name>
+                <quantity>280 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Coconut milk</name>
+                <name lang="pl">Mleczko kokosowe</name>
+                <quantity>250 ml</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Ginger</name>
+                <name lang="pl">Imbir</name>
+                <quantity>4 cm</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Curry powder</name>
+                <name lang="pl">Przyprawa curry</name>
+                <quantity lang="en">1 tbsp</quantity>
+                <quantity lang="pl">1 łyżka</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Fry chicken with vegetables and spices. Simmer with coconut milk and broth. Serve with rice.</instructions>
+        <instructions lang="pl">Podsmaż kurczaka z warzywami i przyprawami. Duś z mleczkiem kokosowym i bulionem. Podawaj z ryżem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Pad Thai</name>
+        <name lang="pl">Pad Thai</name>
+        <id>4</id>
+        <duration>30 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Rice noodles</name>
+                <name lang="pl">Makaron ryżowy</name>
+                <quantity>200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Shrimp or Chicken</name>
+                <name lang="pl">Krewetki lub kurczak</name>
+                <quantity>200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Eggs</name>
+                <name lang="pl">Jajka</name>
                 <quantity lang="en">2 pcs</quantity>
                 <quantity lang="pl">2 szt</quantity>
             </ingredient>
             <ingredient>
-                <name lang="en">Champignon</name>
-                <name lang="pl">Pieczarka</name>
-                <quantity lang="en">5 big pcs</quantity>
-                <quantity lang="pl">5 dużych szt</quantity>
+                <name lang="en">Mung bean sprouts</name>
+                <name lang="pl">Kiełki fasoli mung</name>
+                <quantity>100 g</quantity>
             </ingredient>
             <ingredient>
-                <name lang="en">Red pepper</name>
-                <name lang="pl">Papryka</name>
-                <quantity lang="en">1 pc</quantity>
-                <quantity lang="pl">1 szt</quantity>
+                <name lang="en">Pad Thai sauce</name>
+                <name lang="pl">Sos Pad Thai</name>
+                <quantity>150 ml</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Peanuts</name>
+                <name lang="pl">Orzeszki ziemne</name>
+                <quantity lang="en">3 tbsp</quantity>
+                <quantity lang="pl">3 łyżki</quantity>
             </ingredient>
         </ingredients>
-        <instructions lang="en"> Not implemented yet
-        </instructions>
-        <instructions lang="pl"> Doda się później
-        </instructions>  
+        <instructions lang="en">Fry ingredients, mix with noodles and sauce. Serve with peanuts and lime.</instructions>
+        <instructions lang="pl">Podsmaż składniki, wymieszaj z makaronem i sosem. Podawaj z orzeszkami i limonką.</instructions>
     </recipe>
+
     <recipe>
-        <name>Pesto</name>
-        <id>1</id>
+        <name lang="en">Chicken Teriyaki</name>
+        <name lang="pl">Kurczak Teriyaki</name>
+        <id>5</id>
+        <duration>30 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>4</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Chicken breast</name>
+                <name lang="pl">Pierś z kurczaka</name>
+                <quantity>1200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Teriyaki sauce</name>
+                <name lang="pl">Sos teriyaki</name>
+                <quantity>300 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Sesame seeds</name>
+                <name lang="pl">Sezam</name>
+                <quantity lang="en">2 tbsp</quantity>
+                <quantity lang="pl">2 łyżki</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Fry chicken, add sauce. Serve with sesame, chives, rice, and broccoli.</instructions>
+        <instructions lang="pl">Podsmaż kurczaka, dodaj sos. Podawaj z sezamem, szczypiorkiem, ryżem i brokułami.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Stuffed peppers</name>
+        <name lang="pl">Papryka faszerowana</name>
+        <id>6</id>
+        <duration>75 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>6</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Large peppers</name>
+                <name lang="pl">Duże papryki</name>
+                <quantity lang="en">6 pcs</quantity>
+                <quantity lang="pl">6 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Minced pork shoulder</name>
+                <name lang="pl">Mielona łopatka wieprzowa</name>
+                <quantity>500 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Rice</name>
+                <name lang="pl">Ryż</name>
+                <quantity>100 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Mozzarella cheese</name>
+                <name lang="pl">Ser mozzarella</name>
+                <quantity>250 g</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Prepare filling with meat, rice and spices. Stuff peppers. Bake.</instructions>
+        <instructions lang="pl">Przygotuj farsz z mięsa, ryżu i przypraw. Nadziej papryki. Zapiecz.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Braised pork loin</name>
+        <name lang="pl">Schab duszony</name>
+        <id>7</id>
+        <duration>60 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>3</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Pork loin slices</name>
+                <name lang="pl">Plastry schabu</name>
+                <quantity lang="en">6 pcs</quantity>
+                <quantity lang="pl">6 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Butternut squash</name>
+                <name lang="pl">Dynia piżmowa</name>
+                <quantity>1/4</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Green beans</name>
+                <name lang="pl">Fasolka szparagowa</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Cream</name>
+                <name lang="pl">Śmietana</name>
+                <quantity lang="en">1 tbsp</quantity>
+                <quantity lang="pl">1 łyżka</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">See external link for instructions: https://zdrowe-odzywianie-przepisy.blogspot.com/2022/10/schab-duszony.html</instructions>
+        <instructions lang="pl">Wykonanie wg linku: https://zdrowe-odzywianie-przepisy.blogspot.com/2022/10/schab-duszony.html</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Lasagna</name>
+        <name lang="pl">Lasagne</name>
+        <id>8</id>
+        <duration>90 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>6</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Pork shoulder</name>
+                <name lang="pl">Łopatka wieprzowa</name>
+                <quantity>700 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Mushrooms</name>
+                <name lang="pl">Pieczarki</name>
+                <quantity>200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Lasagne sheets</name>
+                <name lang="pl">Płaty lazanii</name>
+                <quantity lang="en">12 pcs</quantity>
+                <quantity lang="pl">12 szt</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Mozzarella cheese</name>
+                <name lang="pl">Ser mozzarella</name>
+                <quantity>250 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cream 30%</name>
+                <name lang="pl">Śmietanka 30%</name>
+                <quantity>100 g</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Prepare meat sauce and white sauce. Layer pasta and sauces. Bake.</instructions>
+        <instructions lang="pl">Przygotuj sos mięsny i biały sos. Przekładaj płaty makaronu sosami. Zapiecz.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Pasta with spinach</name>
+        <name lang="pl">Makaron ze szpinakiem</name>
+        <id>9</id>
         <duration>20 min</duration>
         <vegetarian>true</vegetarian>
         <type lang="en">Dinner</type>
@@ -61,21 +337,1747 @@
             <ingredient>
                 <name lang="en">Pasta</name>
                 <name lang="pl">Makaron</name>
-                <quantity>400 g</quantity>
+                <quantity>200 g</quantity>
             </ingredient>
             <ingredient>
-                <name>Pesto</name>
-                <quantity>400 g</quantity>
+                <name lang="en">Spinach leaves</name>
+                <name lang="pl">Liście szpinaku</name>
+                <quantity>250 g</quantity>
             </ingredient>
             <ingredient>
-                <name lang="en">Grated mozarella</name>
-                <name lang="pl">Tarta mozarella</name>
-                <quantity>50 g</quantity>
+                <name lang="en">Cream 30%</name>
+                <name lang="pl">Śmietanka 30%</name>
+                <quantity>150 ml</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Parmesan</name>
+                <name lang="pl">Parmezan</name>
+                <quantity>100 g</quantity>
             </ingredient>
         </ingredients>
-        <instructions lang="en"> Not implemented yet
-        </instructions>
-        <instructions lang="pl"> Doda się później
-        </instructions>  
+        <instructions lang="en">Fry onion and garlic, add spinach. Add cream and lemon juice. Mix with pasta and cheese.</instructions>
+        <instructions lang="pl">Podsmaż cebulę i czosnek, dodaj szpinak. Dodaj śmietankę i sok z cytryny. Wymieszaj z makaronem i serem.</instructions>
     </recipe>
-</recipes>
+
+    <recipe>
+        <name lang="en">Pasta with pea cream</name>
+        <name lang="pl">Makaron z kremem z grochu</name>
+        <id>10</id>
+        <duration>40 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Dry peas</name>
+                <name lang="pl">Groch suchy</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Carrot</name>
+                <name lang="pl">Marchewka</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook peas. Cook carrot. Fry onion. Blend veggies with spices. Serve with pasta.</instructions>
+        <instructions lang="pl">Ugotuj groch. Ugotuj marchewkę. Podsmaż cebulę. Zblenduj warzywa z przyprawami. Podawaj z makaronem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Buckwheat tomato bake</name>
+        <name lang="pl">Pomidorowa zapiekanka gryczana</name>
+        <id>11</id>
+        <duration>50 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Buckwheat groats</name>
+                <name lang="pl">Kasza gryczana</name>
+                <quantity lang="en">1 bag</quantity>
+                <quantity lang="pl">1 torebka</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Lentils</name>
+                <name lang="pl">Soczewica</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Passata</name>
+                <name lang="pl">Passata</name>
+                <quantity lang="en">1 cup</quantity>
+                <quantity lang="pl">1 szklanka</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook groats. Fry onion and carrot. Add passata and lentils. Layer groats, spinach, sauce, and bechamel. Bake.</instructions>
+        <instructions lang="pl">Ugotuj kaszę. Podsmaż cebulę i marchew. Dodaj passatę i soczewicę. Układaj warstwami: kasza, szpinak, sos, beszamel. Zapiecz.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Rice noodles with cabbage</name>
+        <name lang="pl">Makaron ryżowy z kapustą</name>
+        <id>12</id>
+        <duration>25 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Rice noodles</name>
+                <name lang="pl">Makaron ryżowy</name>
+                <quantity lang="en">200 g</quantity>
+                <quantity lang="pl">200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cabbage (white/red)</name>
+                <name lang="pl">Kapusta (biała/czerwona)</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Tofu</name>
+                <name lang="pl">Tofu</name>
+                <quantity lang="en">1 block</quantity>
+                <quantity lang="pl">1 kostka</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Fry onion, garlic, ginger. Add cabbage and pepper, then tofu. Add soy sauce, lime juice, and noodles.</instructions>
+        <instructions lang="pl">Podsmaż cebulę, czosnek i imbir. Dodaj kapustę i paprykę, następnie tofu. Dodaj sos sojowy, limonkę i makaron.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Olive eggplant pesto</name>
+        <name lang="pl">Pesto oliwkowe z bakłażanem</name>
+        <id>13</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Eggplant</name>
+                <name lang="pl">Bakłażan</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Olives</name>
+                <name lang="pl">Oliwki</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Beans/Chickpeas</name>
+                <name lang="pl">Fasolka/Ciecierzyca</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Fry sliced eggplant. Blend olives, basil, legumes, garlic, oil. Mix with pasta and eggplant.</instructions>
+        <instructions lang="pl">Usmaż plastry bakłażana. Zblenduj oliwki, bazylię, strączki, czosnek i oliwę. Wymieszaj z makaronem i bakłażanem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Oven Curry</name>
+        <name lang="pl">Curry z piekarnika</name>
+        <id>14</id>
+        <duration>40 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Carrot</name>
+                <name lang="pl">Marchewka</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Beetroot</name>
+                <name lang="pl">Burak</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Chickpeas</name>
+                <name lang="pl">Ciecierzyca</name>
+                <quantity lang="en">1/2 jar</quantity>
+                <quantity lang="pl">1/2 słoika</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Bake spiced carrot and beet for 20 min. Add onion, bake 10 min. Add cooked rice and chickpeas, bake 5 min.</instructions>
+        <instructions lang="pl">Piecz przyprawioną marchew i buraka 20 min. Dodaj cebulę, piecz 10 min. Dodaj ryż i ciecierzycę, piecz 5 min.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Parsley risotto from oven</name>
+        <name lang="pl">Pietruszkowe risotto z piekarnika</name>
+        <id>15</id>
+        <duration>40 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Parsley root</name>
+                <name lang="pl">Pietruszka</name>
+                <quantity lang="en">1 large</quantity>
+                <quantity lang="pl">1 duża</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Rice</name>
+                <name lang="pl">Ryż</name>
+                <quantity lang="en">1 portion</quantity>
+                <quantity lang="pl">1 porcja</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Tofu</name>
+                <name lang="pl">Tofu</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Bake diced veggies with spices 20-25 min. Cook rice. Add onion to veggies, bake 10 min. Add rice, tofu, soy sauce, bake 5 min.</instructions>
+        <instructions lang="pl">Piecz pokrojone warzywa z przyprawami 20-25 min. Ugotuj ryż. Dodaj cebulę do warzyw, piecz 10 min. Dodaj ryż, tofu, sos sojowy, piecz 5 min.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Buckwheat with vegetables and feta</name>
+        <name lang="pl">Kasza gryczana z warzywami i fetą</name>
+        <id>16</id>
+        <duration>25 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Buckwheat groats</name>
+                <name lang="pl">Kasza gryczana</name>
+                <quantity>100 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Chickpeas</name>
+                <name lang="pl">Ciecierzyca</name>
+                <quantity lang="en">6 tbsp</quantity>
+                <quantity lang="pl">6 łyżek</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Feta cheese</name>
+                <name lang="pl">Ser feta</name>
+                <quantity>100 g</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook groats. Fry grated carrot and pepper. Add garlic, broccoli, chickpeas. Add groats and fry together. Serve with feta.</instructions>
+        <instructions lang="pl">Ugotuj kaszę. Podsmaż startą marchew i paprykę. Dodaj czosnek, brokuły, ciecierzycę. Dodaj kaszę, smaż chwilę. Podawaj z fetą.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Quick Ratatouille</name>
+        <name lang="pl">Szybkie ratatuj</name>
+        <id>17</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Dinner</type>
+        <type lang="pl">Obiad</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Zucchini</name>
+                <name lang="pl">Cukinia</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Eggplant</name>
+                <name lang="pl">Bakłażan</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Tofu</name>
+                <name lang="pl">Tofu</name>
+                <quantity lang="en">1 pack</quantity>
+                <quantity lang="pl">1 opakowanie</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Fry onion and pepper. Add zucchini and eggplant. When soft, add tomato and puree. Add tofu and spices.</instructions>
+        <instructions lang="pl">Podsmaż cebulę i paprykę. Dodaj cukinię i bakłażana. Gdy miękkie, dodaj pomidora i przecier. Dodaj tofu i przyprawy.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Green Shakshuka</name>
+        <name lang="pl">Zielona szakszuka</name>
+        <id>18</id>
+        <duration>20 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Eggs</name>
+                <name lang="pl">Jajka</name>
+                <quantity lang="en">4 pcs</quantity>
+                <quantity lang="pl">4 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Spinach</name>
+                <name lang="pl">Szpinak</name>
+                <quantity>200 g</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">See link for details: https://centrumrespo.pl/przepisy/zielona-szakszuka/</instructions>
+        <instructions lang="pl">Wykonanie wg linku: https://centrumrespo.pl/przepisy/zielona-szakszuka/</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Pear pancakes</name>
+        <name lang="pl">Placki z gruszką</name>
+        <id>19</id>
+        <duration>40 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>25</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Spelt flour</name>
+                <name lang="pl">Mąka orkiszowa</name>
+                <quantity>170 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Yogurt</name>
+                <name lang="pl">Jogurt naturalny</name>
+                <quantity lang="en">0.5 cup</quantity>
+                <quantity lang="pl">0.5 szklanki</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Pears</name>
+                <name lang="pl">Gruszki</name>
+                <quantity lang="en">2-3 pcs</quantity>
+                <quantity lang="pl">2-3 szt</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Mix flour, eggs, sweetener, yogurt, baking powder. Let rest. Add diced pears. Fry.</instructions>
+        <instructions lang="pl">Wymieszaj mąkę, jajka, słodzik, jogurt, proszek do pieczenia. Odstaw. Dodaj pokrojone gruszki. Smaż.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Korean cucumbers</name>
+        <name lang="pl">Ogórki koreańskie</name>
+        <id>20</id>
+        <duration>15 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Cucumbers</name>
+                <name lang="pl">Ogórki</name>
+                <quantity>300 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Soy sauce</name>
+                <name lang="pl">Sos sojowy</name>
+                <quantity lang="en">1 tbsp</quantity>
+                <quantity lang="pl">1 łyżka</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Sesame oil</name>
+                <name lang="pl">Olej sezamowy</name>
+                <quantity lang="en">1 tbsp</quantity>
+                <quantity lang="pl">1 łyżka</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Mix ingredients together.</instructions>
+        <instructions lang="pl">Wymieszać składniki.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Beetroot salad</name>
+        <name lang="pl">Sałatka z burakiem</name>
+        <id>21</id>
+        <duration>15 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Lamb's lettuce</name>
+                <name lang="pl">Roszponka</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Boiled beet</name>
+                <name lang="pl">Ugotowany burak</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Mozzarella</name>
+                <name lang="pl">Mozzarella</name>
+                <quantity>40 g</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Dice ingredients, place on lettuce. Drizzle with dressing (oil, mustard, honey, lemon).</instructions>
+        <instructions lang="pl">Pokrój składniki w kostkę, ułóż na roszponce. Polej sosem (oliwa, musztarda, miód, cytryna).</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Chicken salad with grilled vegetables</name>
+        <name lang="pl">Sałatka z kurczaka z grillowanymi warzywami</name>
+        <id>22</id>
+        <duration>30 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Couscous</name>
+                <name lang="pl">Kuskus</name>
+                <quantity lang="en">3/4 cup</quantity>
+                <quantity lang="pl">3/4 szklanki</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Chicken breast</name>
+                <name lang="pl">Pierś z kurczaka</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Parsley root</name>
+                <name lang="pl">Pietruszka</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Fry spiced chicken. Prepare couscous. Grill honey-coated carrot and parsley strips. Mix with other ingredients.</instructions>
+        <instructions lang="pl">Usmaż przyprawionego kurczaka. Przygotuj kuskus. Zgrilluj paski marchwi i pietruszki w miodzie. Wymieszaj wszystko.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Millet and bean salad</name>
+        <name lang="pl">Sałatka z kaszą jaglaną i fasolą</name>
+        <id>23</id>
+        <duration>20 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Millet</name>
+                <name lang="pl">Kasza jaglana</name>
+                <quantity lang="en">1/4 cup</quantity>
+                <quantity lang="pl">1/4 szklanki</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Green beans</name>
+                <name lang="pl">Fasolka szparagowa</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook millet. Cook beans. Chop veggies. Mix all ingredients.</instructions>
+        <instructions lang="pl">Ugotuj kaszę. Ugotuj fasolkę. Posiekaj warzywa. Wymieszaj wszystko.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Chicken salad mix</name>
+        <name lang="pl">Sałatka z kurczaka mix</name>
+        <id>24</id>
+        <duration>20 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Chicken breast</name>
+                <name lang="pl">Pierś z kurczaka</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Salad mix</name>
+                <name lang="pl">Mix sałat</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Fry chicken strips. Mix olive oil, garlic, lemon. Toss salad with veggies and chicken, drizzle with sauce.</instructions>
+        <instructions lang="pl">Usmaż paski kurczaka. Wymieszaj oliwę, czosnek i cytrynę. Połącz sałatę z warzywami i kurczakiem, polej sosem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Couscous prune salad</name>
+        <name lang="pl">Sałatka kuskus ze śliwką</name>
+        <id>25</id>
+        <duration>15 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Couscous</name>
+                <name lang="pl">Kuskus</name>
+                <quantity>100 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Dried prunes</name>
+                <name lang="pl">Suszone śliwki</name>
+                <quantity>8 pcs</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Mango</name>
+                <name lang="pl">Mango</name>
+                <quantity>0.5 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Prepare couscous. Mix with chopped fruits and seeds.</instructions>
+        <instructions lang="pl">Przygotuj kuskus. Wymieszaj z pokrojonymi owocami i pestkami.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Dinner salad</name>
+        <name lang="pl">Sałatka kolacyjna</name>
+        <id>26</id>
+        <duration>15 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Cauliflower</name>
+                <name lang="pl">Kalafior</name>
+                <quantity>150 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Egg</name>
+                <name lang="pl">Jajko</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Boil egg and cauliflower. Chop veggies. Serve with garlic sauce.</instructions>
+        <instructions lang="pl">Ugotuj jajko i kalafiora. Posiekaj warzywa. Podawaj z sosem czosnkowym.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Blue cheese salad</name>
+        <name lang="pl">Sałatka z serem pleśniowym</name>
+        <id>27</id>
+        <duration>15 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Blue cheese</name>
+                <name lang="pl">Ser pleśniowy</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Salami</name>
+                <name lang="pl">Salami</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Chop ingredients. Mix with nuts and dressing.</instructions>
+        <instructions lang="pl">Pokrój składniki. Wymieszaj z orzechami i sosem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Chicken mango salad</name>
+        <name lang="pl">Sałatka z kurczakiem i mango</name>
+        <id>28</id>
+        <duration>25 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Salad</type>
+        <type lang="pl">Sałatka</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Chicken breast</name>
+                <name lang="pl">Pierś z kurczaka</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Mango</name>
+                <name lang="pl">Mango</name>
+                <quantity>0.5 pc</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Avocado</name>
+                <name lang="pl">Awokado</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Fry chicken in honey-mustard sauce. Chop fruits and veggies. Mix, drizzle with sauce.</instructions>
+        <instructions lang="pl">Usmaż kurczaka w sosie miodowo-musztardowym. Pokrój owoce i warzywa. Wymieszaj, polej sosem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Avocado dressing</name>
+        <name lang="pl">Dressing z awokado</name>
+        <id>29</id>
+        <duration>5 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Sauce</type>
+        <type lang="pl">Sos</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Avocado</name>
+                <name lang="pl">Awokado</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Basil</name>
+                <name lang="pl">Bazylia</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend all ingredients.</instructions>
+        <instructions lang="pl">Zblenduj wszystkie składniki.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Mango dressing</name>
+        <name lang="pl">Dressing z mango</name>
+        <id>30</id>
+        <duration>5 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Sauce</type>
+        <type lang="pl">Sos</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Mango</name>
+                <name lang="pl">Mango</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Lime juice</name>
+                <name lang="pl">Sok z limonki</name>
+                <quantity lang="en">2 tbsp</quantity>
+                <quantity lang="pl">2 łyżki</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend all ingredients.</instructions>
+        <instructions lang="pl">Zblenduj wszystkie składniki.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Yogurt herb dressing</name>
+        <name lang="pl">Dressing jogurtowo-ziołowy</name>
+        <id>31</id>
+        <duration>5 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Sauce</type>
+        <type lang="pl">Sos</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Yogurt</name>
+                <name lang="pl">Jogurt</name>
+                <quantity lang="en">6 tbsp</quantity>
+                <quantity lang="pl">6 łyżek</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Dill</name>
+                <name lang="pl">Koperek</name>
+                <quantity lang="en">2 tbsp</quantity>
+                <quantity lang="pl">2 łyżki</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Mix all ingredients.</instructions>
+        <instructions lang="pl">Wymieszaj wszystkie składniki.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Tzatziki</name>
+        <name lang="pl">Tzatziki</name>
+        <id>32</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Sauce</type>
+        <type lang="pl">Sos</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Yogurt</name>
+                <name lang="pl">Jogurt</name>
+                <quantity lang="en">6 tbsp</quantity>
+                <quantity lang="pl">6 łyżek</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cucumber</name>
+                <name lang="pl">Ogórek</name>
+                <quantity>0.5 pc</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Garlic</name>
+                <name lang="pl">Czosnek</name>
+                <quantity lang="en">2 cloves</quantity>
+                <quantity lang="pl">2 ząbki</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Squeeze water from cucumber. Mix with yogurt, garlic, dill.</instructions>
+        <instructions lang="pl">Odsącz wodę z ogórka. Wymieszaj z jogurtem, czosnkiem i koperkiem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Cauliflower soup</name>
+        <name lang="pl">Zupa kalafiorowa</name>
+        <id>33</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Cauliflower</name>
+                <name lang="pl">Kalafior</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook broth with cauliflower.</instructions>
+        <instructions lang="pl">Ugotuj bulion z kalafiorem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Mushroom soup</name>
+        <name lang="pl">Zupa grzybowa</name>
+        <id>34</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Mushrooms</name>
+                <name lang="pl">Grzyby</name>
+                <quantity>500 g</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook broth with mushrooms.</instructions>
+        <instructions lang="pl">Ugotuj bulion z grzybami.</instructions>
+    </recipe>
+    <recipe>
+        <name lang="en">Nutty Oatmeal</name>
+        <name lang="pl">Owsianka orzechowa</name>
+        <id>35</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity lang="en">50 g</quantity>
+                <quantity lang="pl">50 g</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Peanut butter</name>
+                <name lang="pl">Masło orzechowe</name>
+                <quantity lang="en">1.5 tsp</quantity>
+                <quantity lang="pl">1.5 łyżeczki</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats in water or milk. Mix in peanut butter.</instructions>
+        <instructions lang="pl">Ugotuj płatki na wodzie lub mleku. Wymieszaj z masłem orzechowym.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Carrot Cake Oatmeal</name>
+        <name lang="pl">Owsianka marchewkowa</name>
+        <id>36</id>
+        <duration>15 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Carrot (grated)</name>
+                <name lang="pl">Marchewka (tarta)</name>
+                <quantity lang="en">1 small</quantity>
+                <quantity lang="pl">1 mała</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cinnamon</name>
+                <name lang="pl">Cynamon</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Vanilla extract</name>
+                <name lang="pl">Ekstrakt waniliowy</name>
+                <quantity lang="en">dash</quantity>
+                <quantity lang="pl">odrobina</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats with grated carrot. Season with cinnamon and vanilla.</instructions>
+        <instructions lang="pl">Ugotuj płatki ze startą marchewką. Dopraw cynamonem i wanilią.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Vanilla Oatmeal</name>
+        <name lang="pl">Owsianka waniliowa</name>
+        <id>37</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Vanilla extract</name>
+                <name lang="pl">Ekstrakt z wanilii</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats. Add vanilla extract.</instructions>
+        <instructions lang="pl">Ugotuj płatki. Dodaj ekstrakt z wanilii.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Banana Oatmeal</name>
+        <name lang="pl">Owsianka bananowa</name>
+        <id>38</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Banana</name>
+                <name lang="pl">Banan</name>
+                <quantity lang="en">1/2 pc</quantity>
+                <quantity lang="pl">1/2 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cinnamon</name>
+                <name lang="pl">Cynamon</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats. Mash banana with a fork and mix in. Add cinnamon.</instructions>
+        <instructions lang="pl">Ugotuj płatki. Rozduś banana widelcem i wymieszaj z owsianką. Dodaj cynamon.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Banana Raspberry Oatmeal</name>
+        <name lang="pl">Owsianka bananowo-malinowa</name>
+        <id>39</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Banana</name>
+                <name lang="pl">Banan</name>
+                <quantity lang="en">1/2 pc</quantity>
+                <quantity lang="pl">1/2 szt</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Raspberries</name>
+                <name lang="pl">Maliny</name>
+                <quantity lang="en">few</quantity>
+                <quantity lang="pl">kilka szt</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats. Add banana and raspberries.</instructions>
+        <instructions lang="pl">Ugotuj płatki. Dodaj banana i maliny.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Raspberry Oatmeal</name>
+        <name lang="pl">Owsianka malinowa</name>
+        <id>40</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Raspberries</name>
+                <name lang="pl">Maliny</name>
+                <quantity lang="en">few</quantity>
+                <quantity lang="pl">kilka szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Honey</name>
+                <name lang="pl">Miód</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Vanilla extract</name>
+                <name lang="pl">Ekstrakt waniliowy</name>
+                <quantity lang="en">dash</quantity>
+                <quantity lang="pl">odrobina</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats. Serve with raspberries, honey, and vanilla.</instructions>
+        <instructions lang="pl">Ugotuj płatki. Podawaj z malinami, miodem i wanilią.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Cinnamon Oatmeal</name>
+        <name lang="pl">Owsianka cynamonowa</name>
+        <id>41</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cinnamon</name>
+                <name lang="pl">Cynamon</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats. Season generously with cinnamon.</instructions>
+        <instructions lang="pl">Ugotuj płatki. Dopraw obficie cynamonem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">PB &amp; J Oatmeal</name>
+        <name lang="pl">Owsianka PB &amp; J</name>
+        <id>42</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Peanut butter</name>
+                <name lang="pl">Masło orzechowe</name>
+                <quantity lang="en">1 tsp</quantity>
+                <quantity lang="pl">1 łyżeczka</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Jam</name>
+                <name lang="pl">Dżem</name>
+                <quantity lang="en">1 tbsp</quantity>
+                <quantity lang="pl">1 łyżka</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats. Top with peanut butter and jam.</instructions>
+        <instructions lang="pl">Ugotuj płatki. Na wierzch dodaj masło orzechowe i dżem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Winter Apple Oatmeal</name>
+        <name lang="pl">Owsianka zimowa</name>
+        <id>43</id>
+        <duration>15 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Apple (grated)</name>
+                <name lang="pl">Jabłko (tarte)</name>
+                <quantity lang="en">1 pc</quantity>
+                <quantity lang="pl">1 szt</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cinnamon</name>
+                <name lang="pl">Cynamon</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats. Mix in grated apple and cinnamon.</instructions>
+        <instructions lang="pl">Ugotuj płatki. Wymieszaj ze startym jabłkiem i cynamonem.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Gingerbread Oatmeal</name>
+        <name lang="pl">Owsianka piernikowa</name>
+        <id>44</id>
+        <duration>15 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Breakfast</type>
+        <type lang="pl">Śniadanie</type>
+        <portions>1</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Oats</name>
+                <name lang="pl">Płatki owsiane</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Gingerbread spice</name>
+                <name lang="pl">Przyprawa do piernika</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+             <ingredient>
+                <name lang="en">Cinnamon</name>
+                <name lang="pl">Cynamon</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Raisins</name>
+                <name lang="pl">Rodzynki</name>
+                <quantity lang="en">1 tbsp</quantity>
+                <quantity lang="pl">1 łyżka</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Honey</name>
+                <name lang="pl">Miód</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook oats. Add spices, raisins, and honey.</instructions>
+        <instructions lang="pl">Ugotuj płatki. Dodaj przyprawy, rodzynki i miód.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Beetroot soup</name>
+        <name lang="pl">Barszcz</name>
+        <id>45</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Beetroot sourdough</name>
+                <name lang="pl">Zakwas</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook broth with beetroot sourdough.</instructions>
+        <instructions lang="pl">Ugotuj zakwas.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Sorrel soup</name>
+        <name lang="pl">Szczawiowa</name>
+        <id>46</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Sorrel</name>
+                <name lang="pl">Szczaw</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook broth with sorrel.</instructions>
+        <instructions lang="pl">Ugotuj szczaw.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Mexican soup</name>
+        <name lang="pl">Zupa meksykańska</name>
+        <id>47</id>
+        <duration>30 min</duration>
+        <vegetarian>false</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Chicken</name>
+                <name lang="pl">Kurczak</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">To be added.</instructions>
+        <instructions lang="pl">Dodaj przepis.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Pickled soup</name>
+        <name lang="pl">Ogórkowa</name>
+        <id>48</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Pickled cucumbers</name>
+                <name lang="pl">Ogórki kiszone</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">To be added.</instructions>
+        <instructions lang="pl">Dodaj przepis.</instructions>
+    </recipe>
+
+    <recipe>
+        <name>Gazpacho</name>
+        <id>49</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Tomatoes</name>
+                <name lang="pl">Pomidory</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">To be added.</instructions>
+        <instructions lang="pl">Dodaj przepis.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Vegetable soup</name>
+        <name lang="pl">Jarzynowa</name>
+        <id>50</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Potatoes</name>
+                <name lang="pl">Ziemniaki</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">To be added.</instructions>
+        <instructions lang="pl">Dodaj przepis.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Onion soup</name>
+        <name lang="pl">Cebulowa</name>
+        <id>50</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Onion</name>
+                <name lang="pl">Cebula</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">To be added.</instructions>
+        <instructions lang="pl">Dodaj przepis.</instructions>
+    </recipe>
+
+        <recipe>
+        <name lang="en">Lentil soup</name>
+        <name lang="pl">Soczewica</name>
+        <id>51</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Lentil</name>
+                <name lang="pl">Soczewica</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">To be added.</instructions>
+        <instructions lang="pl">Dodaj przepis.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Sour rye soup</name>
+        <name lang="pl">Żurek</name>
+        <id>52</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+             <ingredient>
+                <name lang="en">Sour rye</name>
+                <name lang="pl">Żur</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">To be added.</instructions>
+        <instructions lang="pl">Dodaj przepis.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Carrot cream soup</name>
+        <name lang="pl">Zupa krem z marchewki</name>
+        <id>53</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Carrots</name>
+                <name lang="pl">Marchewki</name>
+                <quantity>600 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Onion</name>
+                <name lang="pl">Cebula</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Vegetable broth</name>
+                <name lang="pl">Bulion warzywny</name>
+                <quantity>1 l</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Ginger</name>
+                <name lang="pl">Imbir</name>
+                <quantity>2 cm</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook carrots and onion in broth with ginger until soft. Season. Blend until smooth.</instructions>
+        <instructions lang="pl">Gotuj marchew i cebulę w bulionie z imbirem do miękkości. Dopraw. Zblenduj na gładko.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Broccoli cream soup</name>
+        <name lang="pl">Zupa krem z brokułów</name>
+        <id>54</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Broccoli</name>
+                <name lang="pl">Brokuły</name>
+                <quantity>500 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Potato</name>
+                <name lang="pl">Ziemniak</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Vegetable broth</name>
+                <name lang="pl">Bulion warzywny</name>
+                <quantity>1 l</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook broccoli and potato in broth until soft. Season. Blend until smooth.</instructions>
+        <instructions lang="pl">Gotuj brokuły i ziemniaka w bulionie do miękkości. Dopraw. Zblenduj na gładko.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Pumpkin cream soup</name>
+        <name lang="pl">Zupa krem z dyni</name>
+        <id>55</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Pumpkin</name>
+                <name lang="pl">Dynia</name>
+                <quantity>800 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Onion</name>
+                <name lang="pl">Cebula</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Vegetable broth</name>
+                <name lang="pl">Bulion warzywny</name>
+                <quantity>1 l</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook pumpkin and onion in broth until soft. Season (e.g., with ginger or curry). Blend until smooth.</instructions>
+        <instructions lang="pl">Gotuj dynię i cebulę w bulionie do miękkości. Dopraw (np. imbirem lub curry). Zblenduj na gładko.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Green vegetable cream soup (no cream)</name>
+        <name lang="pl">Krem z zielonych warzyw (bez śmietany)</name>
+        <id>56</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Broccoli</name>
+                <name lang="pl">Brokuły</name>
+                <quantity>300 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Spinach</name>
+                <name lang="pl">Szpinak</name>
+                <quantity>150 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Green peas</name>
+                <name lang="pl">Zielony groszek</name>
+                <quantity>200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Vegetable broth</name>
+                <name lang="pl">Bulion warzywny</name>
+                <quantity>1 l</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook vegetables in broth until soft. Season. Blend until smooth. Do not add cream.</instructions>
+        <instructions lang="pl">Gotuj warzywa w bulionie do miękkości. Dopraw. Zblenduj na gładko. Bez dodatku śmietany.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Zucchini cream soup</name>
+        <name lang="pl">Zupa krem z cukinii</name>
+        <id>57</id>
+        <duration>30 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Soup</type>
+        <type lang="pl">Zupa</type>
+        <portions>4</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Zucchini</name>
+                <name lang="pl">Cukinia</name>
+                <quantity>600 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Onion</name>
+                <name lang="pl">Cebula</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Vegetable broth</name>
+                <name lang="pl">Bulion warzywny</name>
+                <quantity>1 l</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Cook zucchini and onion in broth until soft. Season. Blend until smooth.</instructions>
+        <instructions lang="pl">Gotuj cukinię i cebulę w bulionie do miękkości. Dopraw. Zblenduj na gładko.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Green avocado coconut smoothie</name>
+        <name lang="pl">Zielony koktajl z awokado i mleczkiem kokosowym</name>
+        <id>58</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Smoothie</type>
+        <type lang="pl">Koktajl</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Avocado</name>
+                <name lang="pl">Awokado</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Coconut milk</name>
+                <name lang="pl">Mleczko kokosowe</name>
+                <quantity>200 ml</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Spinach</name>
+                <name lang="pl">Szpinak</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Lime juice</name>
+                <name lang="pl">Sok z limonki</name>
+                <quantity>1 tbsp</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Honey</name>
+                <name lang="pl">Miód</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend all ingredients until smooth. Serve cold.</instructions>
+        <instructions lang="pl">Zblenduj wszystkie składniki na gładko. Podawaj schłodzony.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Rice pineapple coconut smoothie</name>
+        <name lang="pl">Ryżowy koktajl z ananasem i kokosem</name>
+        <id>59</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Smoothie</type>
+        <type lang="pl">Koktajl</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Cooked rice</name>
+                <name lang="pl">Ugotowany ryż</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Pineapple</name>
+                <name lang="pl">Ananas</name>
+                <quantity>150 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Coconut milk</name>
+                <name lang="pl">Mleczko kokosowe</name>
+                <quantity>200 ml</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Desiccated coconut</name>
+                <name lang="pl">Wiórki kokosowe</name>
+                <quantity>1 tbsp</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Honey</name>
+                <name lang="pl">Miód</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend all ingredients until creamy. Add more milk if needed.</instructions>
+        <instructions lang="pl">Zblenduj wszystkie składniki do kremowej konsystencji. W razie potrzeby dolej mleczka.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Hearty millet smoothie</name>
+        <name lang="pl">Pożywne smoothie jaglane</name>
+        <id>60</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Smoothie</type>
+        <type lang="pl">Koktajl</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Cooked millet</name>
+                <name lang="pl">Ugotowana kasza jaglana</name>
+                <quantity>100 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Banana</name>
+                <name lang="pl">Banan</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Yogurt</name>
+                <name lang="pl">Jogurt</name>
+                <quantity>200 ml</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Honey</name>
+                <name lang="pl">Miód</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend millet, banana and yogurt until smooth. Sweeten to taste.</instructions>
+        <instructions lang="pl">Zblenduj kaszę, banana i jogurt na gładko. Dosłódź do smaku.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Raspberry cheesecake smoothie</name>
+        <name lang="pl">Smoothie o smaku sernika z malinami</name>
+        <id>61</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Smoothie</type>
+        <type lang="pl">Koktajl</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Quark/cream cheese</name>
+                <name lang="pl">Twaróg/ser kremowy</name>
+                <quantity>150 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Yogurt</name>
+                <name lang="pl">Jogurt</name>
+                <quantity>150 ml</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Raspberries</name>
+                <name lang="pl">Maliny</name>
+                <quantity>100 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Vanilla extract</name>
+                <name lang="pl">Ekstrakt waniliowy</name>
+                <quantity>dash</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Honey</name>
+                <name lang="pl">Miód</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend until creamy. Adjust sweetness and vanilla to taste.</instructions>
+        <instructions lang="pl">Zblenduj na kremowo. Dostosuj słodycz i wanilię do smaku.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Kefir chia fruit smoothie</name>
+        <name lang="pl">Kefir z nasionami chia i owocami</name>
+        <id>62</id>
+        <duration>15 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Smoothie</type>
+        <type lang="pl">Koktajl</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Kefir</name>
+                <name lang="pl">Kefir</name>
+                <quantity>250 ml</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Chia seeds</name>
+                <name lang="pl">Nasiona chia</name>
+                <quantity>2 tbsp</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Mixed fruit</name>
+                <name lang="pl">Mieszane owoce</name>
+                <quantity>150 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Honey</name>
+                <name lang="pl">Miód</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Soak chia in kefir for 10 min, then blend with fruit. Sweeten to taste.</instructions>
+        <instructions lang="pl">Namocz chia w kefirze 10 min, następnie zblenduj z owocami. Dosłódź do smaku.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Frozen mango coconut yogurt smoothie</name>
+        <name lang="pl">Mrożone mango, jogurt kokosowy, mleko, imbir, sok z limonki, lód i słodzik</name>
+        <id>63</id>
+        <duration>10 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Smoothie</type>
+        <type lang="pl">Koktajl</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Frozen mango</name>
+                <name lang="pl">Mrożone mango</name>
+                <quantity>200 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Coconut yogurt</name>
+                <name lang="pl">Jogurt kokosowy</name>
+                <quantity>150 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Milk</name>
+                <name lang="pl">Mleko</name>
+                <quantity>150 ml</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Ginger</name>
+                <name lang="pl">Imbir</name>
+                <quantity>1 tsp grated</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Lime juice</name>
+                <name lang="pl">Sok z limonki</name>
+                <quantity>2 tbsp</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Ice cubes</name>
+                <name lang="pl">Lód</name>
+                <quantity lang="en">1 handful</quantity>
+                <quantity lang="pl">1 garść</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Sweetener</name>
+                <name lang="pl">Słodzik</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend everything until frosty and smooth. Adjust sweetness and lime to taste.</instructions>
+        <instructions lang="pl">Zblenduj wszystko na mroźny, gładki koktajl. Dostosuj słodycz i limonkę do smaku.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Kiwi spinach banana smoothie</name>
+        <name lang="pl">Kiwi + szpinak + banan + woda</name>
+        <id>64</id>
+        <duration>5 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Smoothie</type>
+        <type lang="pl">Koktajl</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Kiwi</name>
+                <name lang="pl">Kiwi</name>
+                <quantity>2 pcs</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Spinach</name>
+                <name lang="pl">Szpinak</name>
+                <quantity>50 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Banana</name>
+                <name lang="pl">Banan</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Water</name>
+                <name lang="pl">Woda</name>
+                <quantity>200 ml</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend all ingredients until smooth. Serve immediately.</instructions>
+        <instructions lang="pl">Zblenduj wszystkie składniki na gładko. Podawaj od razu.</instructions>
+    </recipe>
+
+    <recipe>
+        <name lang="en">Banana cherry chocolate smoothie</name>
+        <name lang="pl">Banan + wiśnie + czekolada + woda</name>
+        <id>65</id>
+        <duration>5 min</duration>
+        <vegetarian>true</vegetarian>
+        <type lang="en">Smoothie</type>
+        <type lang="pl">Koktajl</type>
+        <portions>2</portions>
+        <ingredients>
+            <ingredient>
+                <name lang="en">Banana</name>
+                <name lang="pl">Banan</name>
+                <quantity>1 pc</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cherries (pitted)</name>
+                <name lang="pl">Wiśnie (bez pestek)</name>
+                <quantity>150 g</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Cocoa powder</name>
+                <name lang="pl">Kakao</name>
+                <quantity>1 tbsp</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Water</name>
+                <name lang="pl">Woda</name>
+                <quantity>200 ml</quantity>
+            </ingredient>
+            <ingredient>
+                <name lang="en">Honey</name>
+                <name lang="pl">Miód</name>
+                <quantity lang="en">to taste</quantity>
+                <quantity lang="pl">do smaku</quantity>
+            </ingredient>
+        </ingredients>
+        <instructions lang="en">Blend until smooth. Add honey if needed.</instructions>
+        <instructions lang="pl">Zblenduj na gładko. W razie potrzeby dodaj miód.</instructions>
+    </recipe>
+    
+    </recipes>
