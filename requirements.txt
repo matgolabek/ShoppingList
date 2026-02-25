@@ -1,0 +1,4 @@
+
+kivy[base]
+kivymd
+plyer

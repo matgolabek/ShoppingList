@@ -66,3 +66,38 @@
     <td><img src="./docs/polish.png" alt="Polish Language Version" width="280"></td>
   </tr>
 </table>
+
+---
+
+### 🚀 Getting Started
+
+#### Prerequisites
+
+Make sure you have Python 3 installed on your system.
+
+#### Setup Virtual Environment
+
+1. **Create a virtual environment:**
+   ```bash
+   python3 -m venv venv
+   ```
+
+2. **Activate the virtual environment:**
+   - On Linux/Mac:
+     ```bash
+     source venv/bin/activate
+     ```
+   - On Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Run the application:**
+   ```bash
+   python main.py
+   ```
