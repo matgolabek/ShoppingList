@@ -417,7 +417,7 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-
+venv
 info.dat
 password.txt
 password.json
